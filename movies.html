@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <link rel="stylesheet" type="text/css" href="style/movie.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Movie v1.0</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">
+          <a href="index.html"><img src="assets/logo.png" /></a>
+        </div>
+        <div class="category">
+          <div class="cat-list">
+            <a href=""><p class="cat-list-p">IMDB өндөр</p></a>
+          </div>
+          <div class="cat-list">
+            <a href=""><p class="cat-list-p">Хэрэглэгчийн үнэлгээ өндөр</p></a>
+          </div>
+        </div>
+        <div class="search">
+          <div class="search-box">
+            <input type="text" placeholder="Хайх..." id="search-val" />
+            <button onclick="search()">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+      <div class="main">
+        <div class="main-top">
+          <p class="main-txt"></p>
+        </div>
+        <div class="main-body">
+          <div class="left">
+            <div class="movie-container">
+              <div class="movie-head">
+                <div class="movie-head-img">
+                  <img src="assets/call-of-the-wind.png" />
+                </div>
+                <div class="movie-head-text">
+                  <h1>The Call of the Wind (2020)</h1>
+                  <p>Feb, 19, 2020<span>100 мин</span></p>
+                  <p>IMDB: 8.5<span> Сайтын үзэгчдийн үнэлгээ: 7.3</span></p>
+                  <p class="genre">Адал явдалт</p>
+                  <form action="#" method="POST" style="margin-top: 20px;">
+                    <select
+                      name="star"
+                      id="star"
+                      style="
+                        background: #0f0f0f;
+                        border: solid 1px #fff;
+                        color: #fff;
+                        padding: 4px 10px;
+                        cursor: pointer;
+                      "
+                    >
+                      <option value="5">5</option>
+                      <option value="4">4</option>
+                      <option value="3">3</option>
+                      <option value="2">2</option>
+                      <option value="1">1</option>
+                    </select>
+                    <input
+                      type="submit"
+                      value="Үнэлэх"
+                      style="
+                        background: none;
+                        border: solid 1px #fff;
+                        color: #fff;
+                        cursor: pointer;
+                      "
+                    />
+                  </form>
+                </div>
+              </div>
+              <div class="movie-body">
+                <h1>Хураангуй</h1>
+                <p>
+                  Зөөлөн уур амьсгалтай Өмнөд нутагт Бак хэмээх зоригтой ухаалаг
+                  нохой сайн эзний хайр энхрийлэлд бүүвэйлэгдэн аж төрдөг
+                  байлаа. Тэр үед хүмүүс алтны эрэлд хахир хүйтэн Умард нутгийг
+                  зорьж байсан бөгөөд чарга чирэх хүчирхэг ноход эрэлт ихтэй
+                  байв. Нэгэн шөнө Бак хулгайлагдан зарагдаж, түүний зүйргүй их
+                  зовлон зүдгүүрийг гэтлэн амьдрахын төлөөх тэмцэл эхэлнэ.
+                </p>
+                <a href="" target="_Parent"
+                  ><button>
+                    <i class="fa fa-play" aria-hidden="true"></i> Шууд үзэх
+                  </button></a
+                >
+              </div>
+              <div class="movie-comment">
+                <h1>Сэтгэгдлүүд:</h1>
+                <p class="comment-username">Бат</p>
+                <p class="comment-word">~ Маш их таалагдлаа!</p>
+                <p class="comment-username">Болд</p>
+                <p class="comment-word">~ Гоё</p>
+                <textarea
+                  rows="5"
+                  cols="30"
+                  name="comments"
+                  placeholder="Сэтгэгдэл бичих..."
+                ></textarea>
+                <button onclick="">Нийтлэх</button>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="nav">
+              <div class="nav-top">
+                <p class="nav-title">Ангилал:</p>
+                <ul>
+                  <li class="nav-list">
+                    <a href=""
+                      >Аймшиг
+                      <p class="too">0</p></a
+                    >
+                  </li>
+                  <li class="nav-list">
+                    <a href=""
+                      >Инээдэм
+                      <p class="too">5</p></a
+                    >
+                  </li>
+                  <li class="nav-list">
+                    <a href=""
+                      >Драма
+                      <p class="too">4</p></a
+                    >
+                  </li>
+                  <li class="nav-list">
+                    <a href=""
+                      >Адал явдалт
+                      <p class="too">2</p></a
+                    >
+                  </li>
+                  <li class="nav-list">
+                    <a href=""
+                      >Зөгнөлт
+                      <p class="too">4</p></a
+                    >
+                  </li>
+                  <li class="nav-list">
+                    <a href=""
+                      >Баримтат
+                      <p class="too">3</p></a
+                    >
+                  </li>
+                  <li class="nav-list">
+                    <a href=""
+                      >Хүүхэлдэйн
+                      <p class="too">1</p></a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="nav-bot">
+                <div class="login">
+                  <button onclick="login()" class="active" id="user-login">
+                    <p class="user-log">
+                      <i class="fa fa-user" aria-hidden="true"></i> Хэрэглэгч
+                    </p>
+                  </button>
+                  <button onclick="admin()" id="admin-login">
+                    <p class="admin-log">
+                      <i class="fa fa-user-plus" aria-hidden="true"></i> Админ
+                    </p>
+                  </button>
+                </div>
+                <div class="login-body-1">
+                  <form method="POST" action="#">
+                    <p class="login-body-txt">Хэрэглэгчийн нэр</p>
+                    <i class="fa fa-user" aria-hidden="true"></i
+                    ><input
+                      type="text"
+                      name="username"
+                      placeholder="Нэвтрэх нэр..."
+                    />
+                    <p class="login-body-txt">Нууц үг</p>
+                    <i class="fa fa-lock" aria-hidden="true"></i
+                    ><input
+                      type="password"
+                      name="password"
+                      placeholder="Нууц үг..."
+                    />
+                    <p class="login-body-btn" onclick="reg()">
+                      Шинээр бүртгүүлэх үү?
+                    </p>
+                    <input type="submit" value="Нэвтрэх" id="btn-login" />
+                  </form>
+                </div>
+                <div class="login-body-2">
+                  <form method="POST" action="#">
+                    <p class="login-body-txt">Хэрэглэгчийн нэр</p>
+                    <i class="fa fa-user" aria-hidden="true"></i
+                    ><input
+                      type="text"
+                      name="username"
+                      placeholder="Нэвтрэх нэр..."
+                    />
+                    <p class="login-body-txt">Нууц үг</p>
+                    <i class="fa fa-lock" aria-hidden="true"></i
+                    ><input
+                      type="password"
+                      name="password"
+                      placeholder="Нууц үг..."
+                    />
+                    <p class="login-body-txt">Нууц үг баталгаажуулах</p>
+                    <i class="fa fa-lock" aria-hidden="true"></i
+                    ><input
+                      type="password"
+                      name="password"
+                      placeholder="Нууц үг давтах..."
+                    />
+                    <p class="login-body-btn" onclick="login()">
+                      Нэвтэрч орох уу?
+                    </p>
+                    <input type="submit" value="Бүртгүүлэх" id="btn-login" />
+                  </form>
+                </div>
+                <div class="login-body-3">
+                  <form method="POST" action="#">
+                    <p class="login-body-txt">Админы нэр</p>
+                    <i class="fa fa-user" aria-hidden="true"></i
+                    ><input
+                      type="text"
+                      name="username"
+                      placeholder="Нэвтрэх нэр..."
+                    />
+                    <p class="login-body-txt">Нууц үг</p>
+                    <i class="fa fa-lock" aria-hidden="true"></i
+                    ><input
+                      type="password"
+                      name="password"
+                      placeholder="Нууц үг..."
+                    />
+                    <input type="submit" value="Нэвтрэх" id="btn-login" />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="license">
+          <p class="copyright">
+            Зохиогчийн эрх хуулиар хамгаалагдсан | &copy; 2020 он
+          </p>
+        </div>
+      </footer>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
