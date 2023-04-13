@@ -96,50 +96,48 @@
       if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
-          echo '<section class="content">';
-          echo '<!-- Default box -->';
-          echo '<div class="card">';
-          echo '<div class="card-header">';
-          echo '<h3 class="card-title">Хэрэглэгчид</h3>';
-          echo '</div>';
-          echo '<div class="card-body p-0">';
-          echo '<table class="table table-striped projects">';
-          echo '<thead>';
-          echo '<tr>';
-          echo '<th style="width: 30%">Он/сар/өдөр</th>';
-          echo '<th style="width: 19%">Хэрэгсэл</th>';
-          echo '<th style="width: "15%">Асуудал</th>';
-          echo '<th style="width: "15%">КОД</th>';
-          echo '<th style="width: 10%; text-align: center">Тохиргоо</th>';
-          echo '</tr>';
-          echo '</thead>';
-          echo '<tbody>';
-          echo '<tr>';
-          echo '<td>';
-          echo "<a>"  . $row['orderDate'] . "</a>";
-          echo '<br />';
-          echo '</td>';
-          echo "<td>" . $row['item'] . "</td>";
-          echo "<td>" . $row['problem'] . "</td>";
-          echo "<td>" . $row['userID'] . "</td>";
-          echo '<td class="project-actions text-right">';
-          echo '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default">';
-          echo '<i class="fas fa-trash"> </i>';
-          
-
-
-          echo '</button>';
-          echo '</td>';
-          echo '</tr>';
-          echo '</tbody>';
-          echo '</table>';
-          echo '</div>';
-          echo '<!-- /.card-body -->';
-          echo '</div>';
-          echo '<!-- /.card -->';
-          echo '</section>';
-
-          echo '';
+      ?>
+          <section class="content">
+            <form action="" method="POST">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Хэрэглэгчид</h3>
+                </div>
+                <div class="card-body p-0">
+                  <table class="table table-striped projects">
+                    <thead>
+                      <tr>
+                        <th style="width: 30%">Он/сар/өдөр</th>
+                        <th style="width: 19%">Хэрэгсэл</th>
+                        <th style="width: 15%">Асуудал</th>
+                        <th style="width: 15%">КОД</th>
+                        <th style="width: 10%; text-align: center">Тохиргоо</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <a> <?php echo $row['orderDate'] ?> </a>
+                          <br />
+                        </td>
+                        <td> <?php echo $row['item'] ?> </td>
+                        <td> <?php echo $row['problem'] ?> </td>
+                        <td> <?php echo $row['userID'] ?> </td>
+                        <td class="project-actions text-right">
+                          <button>
+                            <a onclick="return confirm ('Та захиалгыг батлахдаа итгэлтэй байна уу? ')"
+                             href="Confirm/adminConfirm.php?id=<?php echo $row["order_id"]; ?>">Батлах</a>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- /.card -->
+            </form>
+          </section>
+      <?php
         }
       } else {
         echo "0 results";
@@ -147,7 +145,7 @@
       $conn->close();
 
       ?>
-      <div class="modal fade" id="modal-default">
+      <!-- <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -164,18 +162,18 @@
             </div>
           </div>
           <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
+    <!-- /.modal-dialog -->
+  </div> -->
+  <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
 

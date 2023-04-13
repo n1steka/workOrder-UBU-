@@ -1,3 +1,24 @@
+<?php
+session_start();
+include("../service/dbConnect.php");
+$msg = "";
+if (isset($_POST['submit'])) {
+    // echo "<pre>";
+    // print_r($_POST);
+    $code = mysqli_real_escape_string($conn, $_POST['code']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $sql = mysqli_query($conn, "SELECT * FROM users WHERE user_id='$code' && password = '$password' ");
+    $num =  mysqli_num_rows($sql);
+
+    if ($num > 0) {
+        $row = mysqli_fetch_assoc($sql);
+        $_SESSION['user_id'] = $row['user_id'];
+        header("location: ../service/orderList.php ");
+    } else {
+        $msg = "Таны нууц үг эсвэл нэвтрэх нэр буруу байна";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,12 +31,12 @@
 
 <body>
 
-    <form action="../service/userLogin.php" method="post">
+    <form action="" method="post">
         <h2>User Login</h2>
 
         <div class="form-group">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="code" name="code" required>
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
@@ -27,7 +48,10 @@
             <a href="./LoginPage.php">Админ эрхээр нэвтрэх</a>
         </div>
 
-        <button type="submit">Login</button>
+        <button type="submit" name="submit">Login</button>
+        <div class="error">
+            <p> <?php echo $msg ?></p>
+        </div>
     </form>
 </body>
 
