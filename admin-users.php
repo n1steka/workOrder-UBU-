@@ -42,7 +42,7 @@
            with font-awesome or any other icon font library -->
 
             <li class="nav-item">
-              <a href="admin-movie.php" class="nav-link">
+              <a href="admin-order.php" class="nav-link">
                 <i class="nav-icon fas fa-video"></i>
                 <p>
                   Хэрэглэгчид
@@ -55,6 +55,12 @@
                 <p>
                   Захиалгын жагсаалт
                 </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="admin-orderConfirm.php" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Баталсан захиалга</p>
               </a>
             </li>
 
@@ -90,7 +96,7 @@
       <!-- Main content -->
       <?php
       include("./service/dbConnect.php");
-      $sql = "SELECT order_id, orderDate, item, problem ,userID FROM workorder ORDER BY orderDate";
+      $sql = "SELECT order_id, orderDate, item, problem ,userID , dataStatusId FROM workorder WHERE dataStatusId IS NULL ORDER BY orderDate";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
@@ -112,6 +118,7 @@
                         <th style="width: 15%">Асуудал</th>
                         <th style="width: 15%">КОД</th>
                         <th style="width: 10%; text-align: center">Тохиргоо</th>
+                        <th style="width: 10%; text-align: center">Төлөв</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -125,9 +132,21 @@
                         <td> <?php echo $row['userID'] ?> </td>
                         <td class="project-actions text-right">
                           <button>
-                            <a onclick="return confirm ('Та захиалгыг батлахдаа итгэлтэй байна уу? ')"
-                             href="Confirm/adminConfirm.php?id=<?php echo $row["order_id"]; ?>">Батлах</a>
+                            <a onclick="return confirm ('Та захиалгыг батлахдаа итгэлтэй байна уу? ')" href="Confirm/adminConfirm.php?id=<?php echo $row["order_id"]; ?>">Батлах</a>
                           </button>
+                        </td>
+                        <td class="project-actions text-right">
+                          <?php if ($row['dataStatusId'] == 1) {
+                          ?>
+                            <p class="status">Баталсан </p>
+                          <?php
+                          } else {
+                          ?>
+                            <p class="status2">Батлаагүй</p>
+                          <?php
+
+                          };
+                          ?>
                         </td>
                       </tr>
                     </tbody>

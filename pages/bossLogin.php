@@ -7,13 +7,13 @@ if (isset($_POST['submit'])) {
 	// print_r($_POST);
 	$code = mysqli_real_escape_string($conn, $_POST['code']);
 	$password = mysqli_real_escape_string($conn, $_POST['password']);
-	$sql = mysqli_query($conn, "SELECT * FROM admin WHERE username='$code' && password = '$password' ");
+	$sql = mysqli_query($conn, "SELECT * FROM boss WHERE username='$code' && password = '$password' ");
 	$num =  mysqli_num_rows($sql);
 
 	if ($num > 0) {
 		$row = mysqli_fetch_assoc($sql);
-		$_SESSION['admin_id'] = $row['admin_id'];
-		header("location: ../admin-order.php ");
+		$_SESSION['boss_id'] = $row['boss_id'];
+		header("location: ../Confirm/bossConfirm.php ");
 	} else {
 		$msg = "Таны нууц үг эсвэл нэвтрэх нэр буруу байна";
 	}
@@ -32,9 +32,9 @@ if (isset($_POST['submit'])) {
 
 <body>
 	<form method="post">
-		<h2>Админ нэвтрэх</h2>
+		<h2>Ан жүмбүг нэвтрэх</h2>
 		<div class="form-group">
-			<label for="username">Нэвтрэх нэр :</label>
+			<label for="username">Нэвтрэх нэр:</label>
 			<input type="text" id="username" name="code" required>
 		</div>
 		<div class="form-group">
@@ -51,7 +51,6 @@ if (isset($_POST['submit'])) {
 			<option value="userLogin">Хэрэглэгч</option>
 			<option value="LoginPage">Админ</option>
 			<option value="bossLogin">Ан жүмбүг</option>
-			
 		</select>
 
 		<script type="text/javascript">

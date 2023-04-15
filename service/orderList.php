@@ -2,8 +2,6 @@
 session_start();
 $userID =   $_SESSION['user_id'];
 echo "Welcome user " . $userID;
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +18,6 @@ echo "Welcome user " . $userID;
     </head>
 
     <body>
-        <button><a href="logout.php">Гарах</a></button>
 
         <h2>Захиалгын жагсаалт</h2>
         <!-- <p>Click on the buttons inside the tabbed menu:</p> -->
@@ -29,13 +26,15 @@ echo "Welcome user " . $userID;
             <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Захиалга</button>
             <button class="tablinks" onclick="openCity(event, 'Paris')">Захиалга үүсгэх</button>
             <button class="tablinks" onclick="openCity(event, 'Tokyo')">Батлагдсан захиалга</button>
+            <button><a href="logout.php">Гарах</a></button>
+
         </div>
         <div id="London" class="tabcontent">
             <h3>Захиалга</h3>
             <p>Захиалгын жагсаалт</p>
             <?php
             include("dbConnect.php");
-            $result = mysqli_query($conn, "SELECT * FROM workorder WHERE userID LIKE '$userID'");
+            $result = mysqli_query($conn, "SELECT order_id , orderDate  , item , problem , userID , dataStatusId FROM workorder WHERE userID = '$userID' AND dataStatusId IS NULL");
             ?>
             <!DOCTYPE html>
             <html>
@@ -118,6 +117,8 @@ echo "Welcome user " . $userID;
             <h3>Захиалга үүсгэх</h3>
 
 
+
+
             <head>
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <style>
@@ -189,7 +190,76 @@ echo "Welcome user " . $userID;
     </div>
 
     <div id="Tokyo" class="tabcontent">
-        <h3>Tokyo</h3>
+        <h3>Батлагдсан захиалга</h3>
+        <?php
+        $result = mysqli_query(
+            $conn,
+            "SELECT order_id , orderDate  , item , problem , userID , dataStatusId FROM workorder WHERE userID = '$userID' AND dataStatusId = 1 "
+        );
+        if (mysqli_num_rows($result)  > 0) {
+        ?>
+            <table  border="1">
+                <tr>
+                    <td>Захиалгын код</td>
+                    <td>Ажилтны код</td>
+                    <td>Захиалга өгсөн өдөр</td>
+                    <td>Эд хөрөнгийн нэр </td>
+                    <td>Асуудал </td>
+                    <td colspan="2">Action</td>
+                </tr>
+
+                <?php
+                $i = 0;
+                while ($row = mysqli_fetch_array($result)) {
+                ?>
+                    <tr>
+                        <td>
+                            <?php echo $row["order_id"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["userID"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["orderDate"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["item"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["problem"]; ?>
+                        </td>
+                        <td>
+                        <?php if ($row['dataStatusId'] == 1) {
+                        ?>
+                            <p class="status">Баталсан </p>
+                        <?php
+                        } else {
+                        ?>
+                            <p class="status2">Батлаагүй</p>
+                        <?php
+
+                        };
+                        ?>
+                    </td>
+                        <td>
+                            <button>
+                                <a onclick="return confirm ('Та захиалгыг устгахдаа итгэлтэй байна уу  ? ')" href="userOrderDelete.php?id=<?php echo $row["order_id"]; ?>">Устгах</a> </button>
+                        </td>
+                    </tr>
+
+            <?php
+                    $i++;
+                }
+            ?>
+            </table>
+
+            <?php
+            } else {
+                 echo  "Өгөгдөл байхгүй"; 
+            }
+
+
+            ?>
     </div>
 
     <script>

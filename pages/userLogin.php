@@ -32,30 +32,44 @@ if (isset($_POST['submit'])) {
 <body>
 
     <form action="" method="post">
-        <h2>User Login</h2>
+        <h2>Хэрэглэгч нэвтрэх</h2>
 
         <div class="form-group">
-            <label for="username">Username:</label>
+            <label for="username">Нэвтрэх нэр:</label>
             <input type="text" id="code" name="code" required>
         </div>
         <div class="form-group">
-            <label for="password">Password:</label>
+            <label for="password">Нууц үг :</label>
             <input type="password" id="password" name="password" required>
         </div>
         <?php if (isset($_GET['error'])); {
         } ?>
         <div class="adminLink">
-            <a href="./LoginPage.php">Админ эрхээр нэвтрэх</a>
+            <!-- <a href="../pages/LoginPage.php">Админ эрхээр нэвтрэх</a> -->
         </div>
 
         <button type="submit" name="submit">Login</button>
         <div class="error">
             <p> <?php echo $msg ?></p>
         </div>
+        <select name="formal" onchange="javascript:handleSelect(this)">
+            <option value="contact">Сонгох</option>
+            <option value="LoginPage">Admin</option>
+            <option value="bossLogin">Ан жүмбүг</option>
+            
+        </select>
+
+        <script type="text/javascript">
+            function handleSelect(elm) {
+                window.location = elm.value + ".php";
+            }
+        </script>
     </form>
 </body>
 
 </html>
+
+
 
 
 

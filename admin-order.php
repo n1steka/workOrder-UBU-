@@ -1,3 +1,8 @@
+<?php
+session_start();
+$adminID =   $_SESSION['admin_id'];
+echo "Welcome user " . $adminID;
+?>
 <!DOCTYPE html>
 <html>
 
@@ -25,7 +30,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="admin-index.html" class="brand-link">
+      <a  class="brand-link">
         <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
           style="opacity: 0.8" />
         <span class="brand-text font-weight-light">Админ Панел</span>
@@ -40,7 +45,7 @@
            with font-awesome or any other icon font library -->
 
             <li class="nav-item">
-              <a href="admin-movie.php" class="nav-link active">
+              <a href="admin-order.php" class="nav-link active">
                 <i class="nav-icon fas fa-video"></i>
                 <p>Хэрэглэгчид</p>
               </a>
@@ -51,9 +56,15 @@
                 <p>Захиалгын жагсаалт</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="admin-orderConfirm.php" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Баталсан захиалга</p>
+              </a>
+            </li>
 
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="./service/logout.php" class="nav-link" >
                 <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p>Гарах</p>
               </a>
