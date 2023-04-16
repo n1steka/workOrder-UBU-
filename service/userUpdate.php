@@ -101,7 +101,7 @@ $row =  mysqli_fetch_array($data);
             </div>
             <!---Gender--->
 
-            <!--Terms and Conditions------> 
+            <!--Terms and Conditions------>
 
             <!--Terms and Conditions------>
 

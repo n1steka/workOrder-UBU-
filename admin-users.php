@@ -96,7 +96,7 @@
       <!-- Main content -->
       <?php
       include("./service/dbConnect.php");
-      $sql = "SELECT order_id, orderDate, item, problem ,userID , dataStatusId FROM workorder WHERE dataStatusId IS NULL ORDER BY orderDate";
+      $sql = "SELECT order_id, orderDate, item,money_order,  problem ,userID , dataStatusId FROM workorder WHERE dataStatusId IS NULL ORDER BY orderDate";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
@@ -116,8 +116,9 @@
                         <th style="width: 30%">Он/сар/өдөр</th>
                         <th style="width: 19%">Хэрэгсэл</th>
                         <th style="width: 15%">Асуудал</th>
-                        <th style="width: 15%">КОД</th>
-                        <th style="width: 10%; text-align: center">Тохиргоо</th>
+                        <th style="width: 15%">Алба тэнхим</th>
+                        <th style="width: 10%; text-align: center">Батлах</th>
+                        <th style="width: 10%; text-align: center">Санал</th>
                         <th style="width: 10%; text-align: center">Төлөв</th>
                       </tr>
                     </thead>
@@ -136,15 +137,29 @@
                           </button>
                         </td>
                         <td class="project-actions text-right">
-                          <?php if ($row['dataStatusId'] == 1) {
+                          <button>
+                            <a href="Confirm/reqBoss.php?id=<?php echo $row["order_id"]; ?>">ЗА</a>
+                            <?php if ($row['money_order'] > 0) {
+                            ?>
+                              <p class="status">Санал илгээсэн</p>
+                            <?php
+                            } else {
+                            ?>
+                              <p class="status2">Батлаагүй</p>
+                            <?php
+                            };
+                            ?>
+                          </button>
+                        </td>
+                        <td class="project-actions text-right">
+                          <?php if ($row['money_order'] > 0) {
                           ?>
-                            <p class="status">Баталсан </p>
+                            <p class="status">Санал илгээсэн</p>
                           <?php
                           } else {
                           ?>
                             <p class="status2">Батлаагүй</p>
                           <?php
-
                           };
                           ?>
                         </td>
@@ -187,7 +202,11 @@
   <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
+  <style>
+    .status {
+      color: green;
+    }
+  </style>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->

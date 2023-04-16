@@ -1,7 +1,6 @@
 <?php
 session_start();
 $adminID =   $_SESSION['admin_id'];
-echo "Welcome user " . $adminID;
 ?>
 <!DOCTYPE html>
 <html>

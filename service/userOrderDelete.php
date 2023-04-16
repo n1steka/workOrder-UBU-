@@ -7,7 +7,7 @@ if ($data) {
 ?>
     <script>
         alert("Ажилттай утсгагдлаа !!");
-        window.open("http://localhost/order/service/orderList.php", "_self");
+        window.open("http://localhost/order/service/userInterface.php", "_self");
     </script>
 <?php
 } else {

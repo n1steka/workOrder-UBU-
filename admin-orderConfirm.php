@@ -49,7 +49,12 @@
                                 </p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="admin-users.php" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>Захиалгын жагсаалт</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="admin-orderConfirm.php" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
@@ -89,7 +94,7 @@
             <!-- Main content -->
             <?php
             include("./service/dbConnect.php");
-            $sql = "SELECT order_id, orderDate, item, problem ,userID , dataStatusId FROM workorder  WHERE dataStatusId = 1  ORDER BY orderDate";
+            $sql = "SELECT order_id, orderDate, item, problem ,userID ,money_order ,  dataStatusId , orderStatus FROM workorder  WHERE dataStatusId = 1  ORDER BY orderDate";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -111,6 +116,8 @@
                                                 <th style="width: 15%">Асуудал</th>
                                                 <th style="width: 15%">КОД</th>
                                                 <th style="width: 10%; text-align: center">Төлөв</th>
+                                                <th style="width: 10%; text-align: center">ҮСИ</th>
+                                                <th style="width: 10%; text-align: center">ЗА</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -133,6 +140,32 @@
                                                         <p class="status2">Батлаагүй</p>
                                                     <?php
 
+                                                    };
+                                                    ?>
+                                                </td>
+                                                <td class="project-actions text-right">
+                                                    <?php if ($row['money_order'] > 0) {
+                                                    ?>
+                                                        <p class="status1">Илгээсэн </p>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <p class="status2">Батлаагүй</p>
+                                                    <?php
+
+                                                    };
+                                                    ?>
+                                                </td>
+
+                                                <td class="project-actions text-right">
+                                                    <?php if ($row['orderStatus'] == 1) {
+                                                    ?>
+                                                        <p class="status">Баталсан </p>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <p class="status2">Батлаагүй</p>
+                                                    <?php
                                                     };
                                                     ?>
                                                 </td>
@@ -178,8 +211,16 @@
     </div>
 
     <style>
-        .status  {
+        .status1 {
+            color: blueviolet;
+        }
+
+        .status {
             color: green;
+        }
+
+        .status2 {
+            color: red;
         }
     </style>
     <!-- /.content-wrapper -->

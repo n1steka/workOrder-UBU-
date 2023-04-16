@@ -13,7 +13,7 @@ if (isset($_POST['save-btn'])) {
     $data = mysqli_query($conn, $query);
 
     if ($data) {
-        header("Location: orderList.php ")
+        header("Location: userInterface.php ")
 
 ?>
         <script>

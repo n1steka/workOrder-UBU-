@@ -1,5 +1,6 @@
 <?php
-$id = $_GET['id'];include("../service/dbConnect.php");
+$id = $_GET['id'];
+include("../service/dbConnect.php");
 
 $query  = "UPDATE `workorder` SET `dataStatusId` = '1' WHERE `workorder`.`order_id` = '$id'";
 $data  =  mysqli_query($conn, $query);
