@@ -42,7 +42,7 @@
            with font-awesome or any other icon font library -->
 
                         <li class="nav-item">
-                            <a href="admin-order.php" class="nav-link">
+                            <a href="admin-movie.php" class="nav-link">
                                 <i class="nav-icon fas fa-video"></i>
                                 <p>
                                     Хэрэглэгчид
@@ -61,7 +61,12 @@
                                 <p>Баталсан захиалга</p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="employee-user.php" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>Ажилчдын мэдээлэл</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>

@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
 	if ($num > 0) {
 		$row = mysqli_fetch_assoc($sql);
 		$_SESSION['admin_id'] = $row['admin_id'];
-		header("location: ../admin-order.php ");
+		header("location: ../admin-movie.php ");
 	} else {
 		$msg = "Таны нууц үг эсвэл нэвтрэх нэр буруу байна";
 	}

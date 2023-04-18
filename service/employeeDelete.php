@@ -1,16 +1,15 @@
 <?php
 include("./dbConnect.php");
-$id = $_GET['id'];
-$query  = "DELETE  FROM users WHERE user_id = '$id'";
+$eid = $_GET['eid'];
+$query  = "DELETE  FROM employee WHERE employee_id = '$eid'";
 $data  =  mysqli_query($conn, $query);
 if ($data) {
 ?>
     <script>
         alert("Ажилттай утсгагдлаа !!");
-        window.open("http://localhost/order/admin-movie.php", "_self");
+        window.open("http://localhost/order/employee-user.php", "_self");
     </script>
 <?php
 } else {
     echo '<script>alert("Захиалга өгсөн хэрэглэгч байна")</script>';
 }
-?>
