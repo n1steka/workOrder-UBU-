@@ -13,5 +13,5 @@ if ($data) {
         alert(" Төсөв амжилттай баталсан !!");
         window.open("http://localhost/order/employee/employeeHomePage.php", "_self");
     </script>
-<?php
+<?php 
 }
