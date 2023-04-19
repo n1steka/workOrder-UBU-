@@ -102,7 +102,7 @@
       <!-- Main content -->
       <?php
       include("./service/dbConnect.php");
-      $sql = "SELECT order_id, orderDate, item,money_order,  problem ,userID , dataStatusId FROM workorder WHERE dataStatusId IS NULL ORDER BY orderDate";
+      $sql = "SELECT order_id, orderDate, item,money_order,  problem ,userID , dataStatusId FROM workorder WHERE dataStatusId IS NULL ORDER BY orderDate desc";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
@@ -119,6 +119,7 @@
                   <table class="table table-striped projects">
                     <thead>
                       <tr>
+                        <th style="width: 30%">Код</th>
                         <th style="width: 30%">Он/сар/өдөр</th>
                         <th style="width: 19%">Хэрэгсэл</th>
                         <th style="width: 15%">Асуудал</th>
@@ -130,6 +131,8 @@
                     </thead>
                     <tbody>
                       <tr>
+                      <td> <?php echo $row['order_id'] ?> </td>
+
                         <td>
                           <a> <?php echo $row['orderDate'] ?> </a>
                           <br />
@@ -145,7 +148,7 @@
                         <td class="project-actions text-right">
                           <button>
                             <a href="Confirm/reqBoss.php?id=<?php echo $row["order_id"]; ?>">ЗА</a>
-                            <?php if ($row['money_order'] > 0) {
+                            <?php if ($row['money_order'] > 1) {
                             ?>
                               <p class="status">Санал илгээсэн</p>
                             <?php
@@ -158,7 +161,7 @@
                           </button>
                         </td>
                         <td class="project-actions text-right">
-                          <?php if ($row['money_order'] > 0) {
+                          <?php if ($row['money_order'] > 1) {
                           ?>
                             <p class="status">Санал илгээсэн</p>
                           <?php

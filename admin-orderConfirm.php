@@ -107,7 +107,7 @@
                 while ($row = $result->fetch_assoc()) {
             ?>
                     <section class="content">
-                        <form action="" method="POST">
+                        <form action="./employee/sent.php" method="POST">
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Хэрэглэгчид</h3>
@@ -116,10 +116,12 @@
                                     <table class="table table-striped projects">
                                         <thead>
                                             <tr>
+                                                <th style="width: 30%">Код</th>
                                                 <th style="width: 30%">Он/сар/өдөр</th>
                                                 <th style="width: 19%">Хэрэгсэл</th>
                                                 <th style="width: 15%">Асуудал</th>
                                                 <th style="width: 15%">КОД</th>
+                                                <th style="width: 10%; text-align: center">Ажилчин</th>
                                                 <th style="width: 10%; text-align: center">Төлөв</th>
                                                 <th style="width: 10%; text-align: center">ҮСИ</th>
                                                 <th style="width: 10%; text-align: center">ЗА</th>
@@ -127,6 +129,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
+                                                <td> <?php echo $row['order_id'] ?> </td>
                                                 <td>
                                                     <a> <?php echo $row['orderDate'] ?> </a>
                                                     <br />
@@ -134,6 +137,29 @@
                                                 <td> <?php echo $row['item'] ?> </td>
                                                 <td> <?php echo $row['problem'] ?> </td>
                                                 <td> <?php echo $row['userID'] ?> </td>
+                                                <td>
+                                                    <select name="emp" id="emp">
+                                                        <?php
+                                                        $emp = "SELECT * FROM employee";
+                                                        $res = mysqli_query($conn, $emp);
+                                                        if (mysqli_num_rows($res) > 0) {
+                                                            while ($rw = mysqli_fetch_assoc($res)) {
+                                                        ?>
+                                                                <option value="<?php echo $rw['employee_id']; ?>"> <?php echo $rw['username']; ?></option>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                    <input type="hidden" name="id" value="<?php echo $row['order_id'] ?> ">
+                                                    <input type="submit" value="Илгээх">
+
+                                                    <!-- <button type="">
+                                                        <a href="./employee/sent.php?id=<?php echo $row['order_id'] ?>">Sent</a>
+                                                    </button> -->
+
+
+                                                </td>
 
                                                 <td class="project-actions text-right">
                                                     <?php if ($row['dataStatusId'] == 1) {
@@ -155,7 +181,7 @@
                                                     <?php
                                                     } else {
                                                     ?>
-                                                        <p class="status2">Батлаагүй</p>
+                                                        <p class="status2">Илгээгээгүй</p>
                                                     <?php
 
                                                     };

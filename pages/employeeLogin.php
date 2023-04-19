@@ -7,13 +7,13 @@ if (isset($_POST['submit'])) {
     // print_r($_POST);
     $code = mysqli_real_escape_string($conn, $_POST['code']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $sql = mysqli_query($conn, "SELECT * FROM users WHERE user_id='$code' && password = '$password' ");
+    $sql = mysqli_query($conn, "SELECT * FROM employee WHERE employee_id='$code' && password = '$password' ");
     $num =  mysqli_num_rows($sql);
 
     if ($num > 0) {
         $row = mysqli_fetch_assoc($sql);
-        $_SESSION['user_id'] = $row['user_id'];
-        header("location: ../service/userInterface.php");
+        $_SESSION['id'] = $row['employee_id'];
+        header("location: ../employee/employeeHomePage.php");
     } else {
         $msg = "Таны нууц үг эсвэл нэвтрэх нэр буруу байна";
     }
@@ -64,23 +64,11 @@ if (isset($_POST['submit'])) {
             function handleSelect(elm) {
                 window.location = elm.value + ".php";
             }
-            
         </script>
     </form>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 <style>
     form {

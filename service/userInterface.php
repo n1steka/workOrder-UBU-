@@ -51,7 +51,7 @@ echo "Welcome user " . $userID;
                 ?>
                     <table border="1">
                         <tr>
-                            <td>Захиалгын код</td>
+                            <td>Захиалгын код</td>1
                             <td>Ажилтны код</td>
                             <td>Захиалга өгсөн өдөр</td>
                             <td>Эд хөрөнгийн нэр </td>

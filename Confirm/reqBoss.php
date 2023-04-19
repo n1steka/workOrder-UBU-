@@ -1,7 +1,7 @@
 <?php
 include("../service/dbConnect.php");
 $id  = $_GET['id'];
-$result  = mysqli_query($conn, "SELECT *  FROM workorder");
+$result  = mysqli_query($conn, "SELECT * FROM workorder WHERE order_id = '$id'");
 $row = mysqli_fetch_array($result);
 
 ?>
@@ -21,7 +21,7 @@ $row = mysqli_fetch_array($result);
     <form action="" method="POST">
         <div class="container">
             <label for="">Захиалгын дугаар : </label> <br>
-            <input type="text" value="<?php echo $row['order_id'] ?>"> <br>
+            <input type="text" value="<?php echo $id ?>"> <br>
             <label for="">Захиалгын он сар өдөр : </label><br>
             <input type="text" value="<?php echo $row['orderDate'] ?>"><br>
             <label for="">Эд хөрөнгө</label><br>
@@ -32,7 +32,7 @@ $row = mysqli_fetch_array($result);
             <input type="text" value="<?php echo $row['userID'] ?>"><br>
             <label for="">Үнийн санал : </label><br>
             <input type="text" value="" placeholder="төгрөгөөр бичих" name="money"><br>
-            <input type="submit" name="submit" value="Батлах"> 
+            <input type="submit" name="submit" value="Батлах">
             <input type="submit" name="cancel" value="Буцах">
         </div>
     </form>
@@ -45,7 +45,7 @@ $row = mysqli_fetch_array($result);
 <?php
 if (isset($_POST['submit'])) {
     $money = $_POST['money'];
-    $update = mysqli_query($conn, "UPDATE workorder SET money_order = '$money' ");
+    $update = mysqli_query($conn, "UPDATE `workorder` SET `money_order` = '$money' WHERE `workorder`.`order_id` = $id;");
     if ($update) {
 ?>
         <script>
@@ -65,7 +65,6 @@ if (isset($_POST['cancel'])) {
 <?php
 }
 ?>
-
 
 <style>
     * {
@@ -98,6 +97,7 @@ if (isset($_POST['cancel'])) {
         float: left;
         margin-left: 10px;
     }
+
     input[type=can] {
         margin-top: 20px;
         background-color: #04AA6D;
