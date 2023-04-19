@@ -60,6 +60,14 @@ $adminID =   $_SESSION['admin_id'];
                 <p>Баталсан захиалга</p>
               </a>
             </li>
+
+            <li class="nav-item">
+              <a href="workProcess.php" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Төлөв</p>
+              </a>
+            </li>
+
             <li class="nav-item">
               <a href="employee-user.php" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>

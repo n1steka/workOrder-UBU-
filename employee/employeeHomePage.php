@@ -72,8 +72,8 @@ echo "Welcome user " . $userID;
 
     <div class="tab">
         <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Хийгдэх ажил</button>
-        <button class="tablinks" onclick="openCity(event, 'Paris')">Төсөв батласан</button>
-        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+        <button class="tablinks" onclick="openCity(event, 'Paris')">Таны сонгосон ажил</button>
+        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Дууссан ажилууд</button>
         <button><a href="../service/logout.php">Гарах</a></button>
     </div>
 
@@ -82,7 +82,7 @@ echo "Welcome user " . $userID;
         <?php
         $result = mysqli_query(
             $conn,
-            "SELECT order_id , orderDate  , item , problem , userID , dataStatusId ,money_order  ,employee_id  FROM workorder WHERE employee_id = '$userID'"
+            "SELECT * FROM workorder WHERE employee_id = '$userID'  AND checkStatus IS NULL"
         );
         if (mysqli_num_rows($result)  > 0) {
         ?>
@@ -136,13 +136,10 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <button>
-                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')" href="../service/uproveBudget.php?id=<?php echo $row["order_id"]; ?>">Батлах</a>
+                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')" href="./employeeCheck.php?id=<?php echo $row["order_id"] ?> "> Батлах</a>
                             </button>
                         </td>
-                        <td>
-                            <button>
-                                <a onclick="return confirm ('Та захиалгыг устгахдаа итгэлтэй байна уу  ? ')" href="userOrderDelete.php?id=<?php echo $row["order_id"]; ?>">Устгах</a> </button>
-                        </td>
+
                     </tr>
 
                 <?php
@@ -161,12 +158,10 @@ echo "Welcome user " . $userID;
     </div>
 
     <div id="Paris" class="tabcontent">
-        <h3>Paris</h3>
-        <p>Paris is the capital of France.</p>
         <?php
         $result = mysqli_query(
             $conn,
-            "SELECT order_id , orderDate  , item , problem , userID , dataStatusId ,money_order FROM workorder WHERE  dataStatusId = 1 AND money_order >=0 AND orderStatus = 1  "
+            "SELECT * FROM workorder WHERE checkStatus = 1"
         );
         if (mysqli_num_rows($result)  > 0) {
         ?>
@@ -220,13 +215,11 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <button>
-                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')" href="../service/uproveBudget.php?id=<?php echo $row["order_id"]; ?>">Батлах</a>
+                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')" 
+                                href="workDone.php?id=<?php echo $row["order_id"]; ?>">Дууссан</a>
                             </button>
                         </td>
-                        <td>
-                            <button>
-                                <a onclick="return confirm ('Та захиалгыг устгахдаа итгэлтэй байна уу  ? ')" href="userOrderDelete.php?id=<?php echo $row["order_id"]; ?>">Устгах</a> </button>
-                        </td>
+                      
                     </tr>
 
                 <?php
@@ -245,8 +238,83 @@ echo "Welcome user " . $userID;
     </div>
 
     <div id="Tokyo" class="tabcontent">
-        <h3>Tokyo</h3>
-        <p>Tokyo is the capital of Japan.</p>
+        <?php
+        $result = mysqli_query(
+            $conn,
+            "SELECT * FROM workorder WHERE checkStatus = 2"
+        );
+        if (mysqli_num_rows($result)  > 0) {
+        ?>
+            <table border="1">
+                <tr>
+                    <td>Захиалгын код</td>
+                    <td>Ажилтны код</td>
+                    <td>Захиалга өгсөн өдөр</td>
+                    <td>Эд хөрөнгийн нэр </td>
+                    <td>Асуудал </td>
+                    <td>Үнийн санал </td>
+                    <td>Аж ахуй</td>
+                    <td>Төсөв батлах</td>
+                </tr>
+
+                <?php
+                $i = 0;
+                while ($row = mysqli_fetch_array($result)) {
+                ?>
+                    <tr>
+                        <td>
+                            <?php echo $row["order_id"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["userID"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["orderDate"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["item"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["problem"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["money_order"]; ?>
+                        </td>
+                        <td>
+                            <?php if ($row['dataStatusId'] == 1) {
+                            ?>
+                                <p class="status">Баталсан </p>
+                            <?php
+                            } else {
+                            ?>
+                                <p class="status2">Батлаагүй</p>
+                            <?php
+
+                            };
+                            ?>
+                        </td>
+                        <td>
+                            <button>
+                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')" 
+                                href="workDone.php?id=<?php echo $row["order_id"]; ?>">Дууссан</a>
+                            </button>
+                        </td>
+                    
+                    </tr>
+
+                <?php
+                    $i++;
+                }
+                ?>
+            </table>
+
+        <?php
+        } else {
+            echo  "Өгөгдөл байхгүй";
+        }
+
+
+        ?>
     </div>
 
     <script>

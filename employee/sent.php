@@ -9,7 +9,7 @@ $res = mysqli_query($conn, $sql);
 if ($res) {
 ?>
     <script>
-        alert("Хэрэглэгчийн мэдээллийг амжилттай шинэчлэлээ");
+        alert("asds");
         window.open("http://localhost/order/admin-orderConfirm.php", "_self");
     </script>
 <?php

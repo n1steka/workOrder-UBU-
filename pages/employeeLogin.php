@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
 <body>
 
     <form action="" method="post">
-        <h2>Хэрэглэгч нэвтрэх</h2>
+        <h2>Ажилчин</h2>
 
         <div class="form-group">
             <label for="username">Нэвтрэх нэр:</label>

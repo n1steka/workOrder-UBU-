@@ -3,7 +3,7 @@ include("../service/dbConnect.php");
 $id = $_GET['id'];
 echo $id;
 
-$sql = "UPDATE `workorder` SET `checkStatus` = '1' WHERE `workorder`.`order_id` = '$id';";
+$sql = "UPDATE `workorder` SET `checkStatus` = '2' WHERE `workorder`.`order_id` = '$id';";
 
 $data = mysqli_query($conn, $sql);
 
