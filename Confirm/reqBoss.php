@@ -1,7 +1,7 @@
 <?php
 include("../service/dbConnect.php");
-$id  = $_GET['id'];
-$result  = mysqli_query($conn, "SELECT * FROM workorder WHERE order_id = '$id'");
+$id = $_GET['id'];
+$result = mysqli_query($conn, "SELECT * FROM workorder WHERE order_id = '$id'");
 $row = mysqli_fetch_array($result);
 
 ?>
@@ -24,12 +24,24 @@ $row = mysqli_fetch_array($result);
             <input type="text" value="<?php echo $id ?>"> <br>
             <label for="">Захиалгын он сар өдөр : </label><br>
             <input type="text" value="<?php echo $row['orderDate'] ?>"><br>
+            <label for="">Засвар хийгдэх өрөөний дугаар : </label><br>
+            <input type="text" value="<?php echo $row['roomNumber'] ?>"><br>
             <label for="">Эд хөрөнгө</label><br>
             <input type="text" value="<?php echo $row['item'] ?>"><br>
             <label for="">Асуудал</label><br>
             <textarea name="" id="" cols="30" rows="10"><?php echo $row['problem'] ?></textarea><br>
             <label for="">Алба тэнхим</label><br>
-            <input type="text" value="<?php echo $row['userID'] ?>"><br>
+            <input type="text" value="<?php
+            $usID = $row['userID'];
+            $sql = "SELECT *  FROM users  WHERE user_id = '$usID'";
+            $data = mysqli_query($conn, $sql);
+
+            if (mysqli_num_rows($data) > 0) {
+                $rows = mysqli_fetch_assoc($data);
+                echo $rows['username'];
+            }
+
+            ?>"><br>
             <label for="">Үнийн санал : </label><br>
             <input type="text" value="" placeholder="төгрөгөөр бичих" name="money"><br>
             <input type="submit" name="submit" value="Батлах">
@@ -47,22 +59,22 @@ if (isset($_POST['submit'])) {
     $money = $_POST['money'];
     $update = mysqli_query($conn, "UPDATE `workorder` SET `money_order` = '$money' WHERE `workorder`.`order_id` = $id;");
     if ($update) {
-?>
+        ?>
         <script>
             alert('Үнийн саналыг амжилтай илгээлээ');
             window.open("http://localhost/order/admin-users.php", "_self");
         </script>
-<?php
+        <?php
     }
 }
 ?>
 <?php
 if (isset($_POST['cancel'])) {
-?>
+    ?>
     <script>
         window.open("http://localhost/order/admin-users.php", "_self");
     </script>
-<?php
+    <?php
 }
 ?>
 

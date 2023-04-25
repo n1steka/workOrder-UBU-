@@ -29,7 +29,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="admin-index.html" class="brand-link">
-                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8;" />
+                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                    style="opacity: 0.8;" />
                 <span class="brand-text font-weight-light">Админ Панел</span>
             </a>
 
@@ -37,7 +38,8 @@
             <div class="sidebar">
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
 
@@ -45,7 +47,7 @@
                             <a href="admin-movie.php" class="nav-link">
                                 <i class="nav-icon fas fa-video"></i>
                                 <p>
-                                    Хэрэглэгчид
+                                    Алба тэнхим
                                 </p>
                             </a>
                         </li>
@@ -73,12 +75,18 @@
                                 <p>Ажилчдын мэдээлэл</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin-done.php" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>Дууссан захиалгууд</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                        <li class="nav-item">
+                            <a href="./service/logout.php" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <p>
-                                    Гарах
-                                </p>
+                                <p>Гарах</p>
                             </a>
                         </li>
                     </ul>
@@ -111,7 +119,7 @@
             if ($result->num_rows > 0) {
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
-            ?>
+                    ?>
                     <section class="content">
                         <form action="./employee/sent.php" method="POST">
                             <div class="card">
@@ -135,14 +143,24 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td> <?php echo $row['order_id'] ?> </td>
                                                 <td>
-                                                    <a> <?php echo $row['orderDate'] ?> </a>
+                                                    <?php echo $row['order_id'] ?>
+                                                </td>
+                                                <td>
+                                                    <a>
+                                                        <?php echo $row['orderDate'] ?>
+                                                    </a>
                                                     <br />
                                                 </td>
-                                                <td> <?php echo $row['item'] ?> </td>
-                                                <td> <?php echo $row['problem'] ?> </td>
-                                                <td> <?php echo $row['userID'] ?> </td>
+                                                <td>
+                                                    <?php echo $row['item'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row['problem'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row['userID'] ?>
+                                                </td>
                                                 <td>
                                                     <?php
                                                     $employee_id = $row['employee_id'];
@@ -150,25 +168,25 @@
                                                     $res = mysqli_query($conn, $emp);
                                                     if (mysqli_num_rows($res) > 0) {
                                                         $rw = mysqli_fetch_assoc($res)
-                                                    ?>
+                                                            ?>
 
-                                                    <?php
+                                                        <?php
                                                         echo $rw['username'];
                                                     }
                                                     ?>
                                                     <?php if ($row['checkStatus'] == 1) {
-                                                    ?>
+                                                        ?>
                                                         <p style="color :blueviolet">Active</p>
-                                                    <?php
+                                                        <?php
                                                     } elseif ($row['checkStatus'] == 2) {
-                                                    ?>
+                                                        ?>
                                                         <p style="color:green">Done</p>
-                                                    <?php
+                                                        <?php
 
                                                     } else {
-                                                    ?>
+                                                        ?>
                                                         <p style="color:red">waiting</p>
-                                                    <?php
+                                                        <?php
                                                     }
                                                     ?>
 
@@ -176,41 +194,44 @@
 
                                                 <td class="project-actions text-right">
                                                     <?php if ($row['dataStatusId'] == 1) {
-                                                    ?>
+                                                        ?>
                                                         <p class="status">Баталсан </p>
-                                                    <?php
+                                                        <?php
                                                     } else {
-                                                    ?>
+                                                        ?>
                                                         <p class="status2">Батлаагүй</p>
-                                                    <?php
+                                                        <?php
 
-                                                    };
+                                                    }
+                                                    ;
                                                     ?>
                                                 </td>
                                                 <td class="project-actions text-right">
                                                     <?php if ($row['money_order'] > 0) {
-                                                    ?>
+                                                        ?>
                                                         <p class="status1">Илгээсэн </p>
-                                                    <?php
+                                                        <?php
                                                     } else {
-                                                    ?>
+                                                        ?>
                                                         <p class="status2">Илгээгээгүй</p>
-                                                    <?php
+                                                        <?php
 
-                                                    };
+                                                    }
+                                                    ;
                                                     ?>
                                                 </td>
 
                                                 <td class="project-actions text-right">
                                                     <?php if ($row['orderStatus'] == 1) {
-                                                    ?>
+                                                        ?>
                                                         <p class="status">Баталсан </p>
-                                                    <?php
+                                                        <?php
                                                     } else {
-                                                    ?>
+                                                        ?>
                                                         <p class="status2">Батлаагүй</p>
-                                                    <?php
-                                                    };
+                                                        <?php
+                                                    }
+                                                    ;
                                                     ?>
                                                 </td>
                                             </tr>
@@ -221,7 +242,7 @@
                             <!-- /.card -->
                         </form>
                     </section>
-            <?php
+                    <?php
                 }
             } else {
                 echo "0 results";
@@ -287,7 +308,7 @@
     <script src="dist/js/demo.js"></script>
 
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             const Toast = Swal.mixin({
                 toast: true,
                 position: "top-end",
@@ -295,86 +316,86 @@
                 timer: 3000,
             });
 
-            $(".swalDefaultSuccess").click(function() {
+            $(".swalDefaultSuccess").click(function () {
                 Toast.fire({
                     icon: "success",
                     title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".swalDefaultInfo").click(function() {
+            $(".swalDefaultInfo").click(function () {
                 Toast.fire({
                     icon: "info",
                     title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".swalDefaultError").click(function() {
+            $(".swalDefaultError").click(function () {
                 Toast.fire({
                     icon: "error",
                     title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".swalDefaultWarning").click(function() {
+            $(".swalDefaultWarning").click(function () {
                 Toast.fire({
                     icon: "warning",
                     title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".swalDefaultQuestion").click(function() {
+            $(".swalDefaultQuestion").click(function () {
                 Toast.fire({
                     icon: "question",
                     title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
 
-            $(".toastrDefaultSuccess").click(function() {
+            $(".toastrDefaultSuccess").click(function () {
                 toastr.success(
                     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
                 );
             });
-            $(".toastrDefaultInfo").click(function() {
+            $(".toastrDefaultInfo").click(function () {
                 toastr.info(
                     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
                 );
             });
-            $(".toastrDefaultError").click(function() {
+            $(".toastrDefaultError").click(function () {
                 toastr.error(
                     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
                 );
             });
-            $(".toastrDefaultWarning").click(function() {
+            $(".toastrDefaultWarning").click(function () {
                 toastr.warning(
                     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
                 );
             });
 
-            $(".toastsDefaultDefault").click(function() {
+            $(".toastsDefaultDefault").click(function () {
                 $(document).Toasts("create", {
                     title: "Toast Title",
                     body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".toastsDefaultTopLeft").click(function() {
+            $(".toastsDefaultTopLeft").click(function () {
                 $(document).Toasts("create", {
                     title: "Toast Title",
                     position: "topLeft",
                     body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".toastsDefaultBottomRight").click(function() {
+            $(".toastsDefaultBottomRight").click(function () {
                 $(document).Toasts("create", {
                     title: "Toast Title",
                     position: "bottomRight",
                     body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".toastsDefaultBottomLeft").click(function() {
+            $(".toastsDefaultBottomLeft").click(function () {
                 $(document).Toasts("create", {
                     title: "Toast Title",
                     position: "bottomLeft",
                     body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".toastsDefaultAutohide").click(function() {
+            $(".toastsDefaultAutohide").click(function () {
                 $(document).Toasts("create", {
                     title: "Toast Title",
                     autohide: true,
@@ -382,14 +403,14 @@
                     body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".toastsDefaultNotFixed").click(function() {
+            $(".toastsDefaultNotFixed").click(function () {
                 $(document).Toasts("create", {
                     title: "Toast Title",
                     fixed: false,
                     body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".toastsDefaultFull").click(function() {
+            $(".toastsDefaultFull").click(function () {
                 $(document).Toasts("create", {
                     body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                     title: "Toast Title",
@@ -397,7 +418,7 @@
                     icon: "fas fa-envelope fa-lg",
                 });
             });
-            $(".toastsDefaultFullImage").click(function() {
+            $(".toastsDefaultFullImage").click(function () {
                 $(document).Toasts("create", {
                     body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                     title: "Toast Title",
@@ -406,7 +427,7 @@
                     imageAlt: "User Picture",
                 });
             });
-            $(".toastsDefaultSuccess").click(function() {
+            $(".toastsDefaultSuccess").click(function () {
                 $(document).Toasts("create", {
                     class: "bg-success",
                     title: "Toast Title",
@@ -414,7 +435,7 @@
                     body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".toastsDefaultInfo").click(function() {
+            $(".toastsDefaultInfo").click(function () {
                 $(document).Toasts("create", {
                     class: "bg-info",
                     title: "Toast Title",
@@ -422,7 +443,7 @@
                     body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".toastsDefaultWarning").click(function() {
+            $(".toastsDefaultWarning").click(function () {
                 $(document).Toasts("create", {
                     class: "bg-warning",
                     title: "Toast Title",
@@ -430,7 +451,7 @@
                     body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".toastsDefaultDanger").click(function() {
+            $(".toastsDefaultDanger").click(function () {
                 $(document).Toasts("create", {
                     class: "bg-danger",
                     title: "Toast Title",
@@ -438,7 +459,7 @@
                     body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
                 });
             });
-            $(".toastsDefaultMaroon").click(function() {
+            $(".toastsDefaultMaroon").click(function () {
                 $(document).Toasts("create", {
                     class: "bg-maroon",
                     title: "Toast Title",

@@ -7,6 +7,6 @@ $dbname = "order";
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Өгөгдлийн сантай холбогдож чадсангүй: " . $conn->connect_error);
 }
-echo "Connected successfully" . "</br>";
+echo "Өгөгдлийн сантай холбогдсон" . "</br>";

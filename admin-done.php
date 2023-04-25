@@ -47,7 +47,7 @@
                             <a href="admin-movie.php" class="nav-link">
                                 <i class="nav-icon fas fa-video"></i>
                                 <p>
-                                    Алба тэнхим
+                                Алба тэнхим
                                 </p>
                             </a>
                         </li>
@@ -70,7 +70,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="workProcess.php" class="nav-link">
+                            <a href="employee-user.php" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>Ажилчдын мэдээлэл</p>
                             </a>
@@ -112,8 +112,7 @@
             <!-- Main content -->
             <?php
             include("./service/dbConnect.php");
-            $sql = "SELECT order_id, orderDate, item, problem ,userID ,money_order ,  dataStatusId , orderStatus  , employee_id 
-            FROM workorder  WHERE dataStatusId = 1  AND employee_id IS NULL ORDER BY orderDate";
+            $sql = "SELECT * FROM workorder  WHERE checkStatus = 2 AND employee_id IS NOT NULL ORDER BY orderDate DESC ";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -139,6 +138,7 @@
                                                 <th style="width: 10%; text-align: center">Төлөв</th>
                                                 <th style="width: 10%; text-align: center">ҮСИ</th>
                                                 <th style="width: 10%; text-align: center">ЗА</th>
+                                                <th style="width: 10%; text-align: center">Дэлгэрэнгүй</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -162,30 +162,28 @@
                                                     <?php echo $row['userID'] ?>
                                                 </td>
                                                 <td>
-                                                    <select name="emp" id="emp">
-                                                        <?php
-                                                        $emp = "SELECT * FROM employee";
-                                                        $res = mysqli_query($conn, $emp);
-                                                        if (mysqli_num_rows($res) > 0) {
+                                                    <?php
+                                                    $employee_id = $row['employee_id'];
+                                                    $emp = "SELECT * FROM employee WHERE employee_id = '$employee_id'";
+                                                    $res = mysqli_query($conn, $emp);
+                                                    if (mysqli_num_rows($res) > 0) {
+                                                        $rw = mysqli_fetch_assoc($res)
                                                             ?>
-                                                            <option value="">Ажилчин сонгох</option>
-                                                            <?php
 
-                                                            while ($rw = mysqli_fetch_assoc($res)) {
-                                                                ?>
-                                                                <option value="<?php echo $rw['employee_id']; ?>"> <?php echo $rw['username']; ?></option>
-                                                                <?php
-                                                            }
-                                                        }
+                                                        <?php
+                                                        echo $rw['username'];
+                                                    }
+                                                    ?>
+                                                    <?php if ($row['checkStatus'] == 2) {
+
                                                         ?>
-                                                    </select>
-                                                    <input type="hidden" name="id" value="<?php echo $row['order_id'] ?> ">
-                                                    <input type="submit" value="Илгээх">
+                                                        <p style="color: green">Дууссан</p>
 
-                                                    <!-- <button type="">
-                                                        <a href="./employee/sent.php?id=<?php echo $row['order_id'] ?>">Sent</a>
-                                                    </button> -->
+                                                        <?php
+                                                    } else {
 
+                                                    }
+                                                    ?>
 
                                                 </td>
 
@@ -230,6 +228,10 @@
                                                     }
                                                     ;
                                                     ?>
+                                                <td>
+                                                    Харах
+                                                </td>
+
                                                 </td>
                                             </tr>
                                         </tbody>
