@@ -9,4 +9,4 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Өгөгдлийн сантай холбогдож чадсангүй: " . $conn->connect_error);
 }
-echo "Өгөгдлийн сантай холбогдсон" . "</br>";
+echo "";

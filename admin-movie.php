@@ -47,7 +47,7 @@ $adminID = $_SESSION['admin_id'];
               <a href="admin-movie.php" class="nav-link active">
                 <i class="nav-icon fas fa-video"></i>
                 <p>Алба тэнхим</p>
-              
+
               </a>
             </li>
             <li class="nav-item">
@@ -190,6 +190,7 @@ $adminID = $_SESSION['admin_id'];
               }
             }
           </script>
+          
           <button onclick="" type="button" class="btn btn-default" data-toggle="modal">
             <a href="./service/userUpdate.php?id=<?php echo $row["user_id"]; ?>">Засах</a>
           </button>
@@ -348,62 +349,9 @@ $adminID = $_SESSION['admin_id'];
       </div>
 
 
-
-      <!-- <div class="modal fade" id="sda-we">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Хэрэглэгчийн мэдээллийг өөрчлөх</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form role="form" method="POST">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Албаны код : </label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Албаны код" required="true" name="classCode" value="<?php echo $row['user_id']; ?>" />
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Овог : </label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Овог " name="username" />
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Нэр : </label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Нэр" name="lastname" />
-                  </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Утасны дугаар :</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Утасны дугаар" name="phone" />
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Имэйл : </label>
-                    <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Имэйл " name="email" />
-                  </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password : </label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Нууц үг " name="password" />
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">
-                    Хадгалах
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">
-                Хаах
-              </button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
+  
+  </div>
+  <!-- /.modal-dialog -->
   </div> -->
   <!-- /.content -->
   </div>

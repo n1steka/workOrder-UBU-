@@ -1,6 +1,6 @@
 <?php
 session_start();
-$userID =   $_SESSION['id'];
+$userID = $_SESSION['id'];
 include("../service/dbConnect.php");
 echo "Welcome user " . $userID;
 ?>
@@ -84,8 +84,8 @@ echo "Welcome user " . $userID;
             $conn,
             "SELECT * FROM workorder WHERE employee_id = '$userID'  AND checkStatus IS NULL"
         );
-        if (mysqli_num_rows($result)  > 0) {
-        ?>
+        if (mysqli_num_rows($result) > 0) {
+            ?>
             <table border="1">
                 <tr>
                     <td>Захиалгын код</td>
@@ -101,7 +101,7 @@ echo "Welcome user " . $userID;
                 <?php
                 $i = 0;
                 while ($row = mysqli_fetch_array($result)) {
-                ?>
+                    ?>
                     <tr>
                         <td>
                             <?php echo $row["order_id"]; ?>
@@ -123,34 +123,36 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
-                            ?>
+                                ?>
                                 <p class="status">Баталсан </p>
-                            <?php
+                                <?php
                             } else {
-                            ?>
+                                ?>
                                 <p class="status2">Батлаагүй</p>
-                            <?php
+                                <?php
 
-                            };
+                            }
+                            ;
                             ?>
                         </td>
                         <td>
                             <button>
-                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')" href="./employeeCheck.php?id=<?php echo $row["order_id"] ?> "> Батлах</a>
+                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')"
+                                    href="./employeeCheck.php?id=<?php echo $row["order_id"] ?> "> Батлах</a>
                             </button>
                         </td>
 
                     </tr>
 
-                <?php
+                    <?php
                     $i++;
                 }
                 ?>
             </table>
 
-        <?php
+            <?php
         } else {
-            echo  "Өгөгдөл байхгүй";
+            echo "Өгөгдөл байхгүй";
         }
 
 
@@ -163,8 +165,8 @@ echo "Welcome user " . $userID;
             $conn,
             "SELECT * FROM workorder WHERE checkStatus = 1"
         );
-        if (mysqli_num_rows($result)  > 0) {
-        ?>
+        if (mysqli_num_rows($result) > 0) {
+            ?>
             <table border="1">
                 <tr>
                     <td>Захиалгын код</td>
@@ -174,13 +176,13 @@ echo "Welcome user " . $userID;
                     <td>Асуудал </td>
                     <td>Үнийн санал </td>
                     <td>Аж ахуй</td>
-                    <td>Төсөв батлах</td>
+                    <td>Төлөв</td>
                 </tr>
 
                 <?php
                 $i = 0;
                 while ($row = mysqli_fetch_array($result)) {
-                ?>
+                    ?>
                     <tr>
                         <td>
                             <?php echo $row["order_id"]; ?>
@@ -202,35 +204,36 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
-                            ?>
+                                ?>
                                 <p class="status">Баталсан </p>
-                            <?php
+                                <?php
                             } else {
-                            ?>
+                                ?>
                                 <p class="status2">Батлаагүй</p>
-                            <?php
+                                <?php
 
-                            };
+                            }
+                            ;
                             ?>
                         </td>
                         <td>
                             <button>
-                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')" 
-                                href="workDone.php?id=<?php echo $row["order_id"]; ?>">Дууссан</a>
+                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')"
+                                    href="workDone.php?id=<?php echo $row["order_id"]; ?>">Дууссан</a>
                             </button>
                         </td>
-                      
+
                     </tr>
 
-                <?php
+                    <?php
                     $i++;
                 }
                 ?>
             </table>
 
-        <?php
+            <?php
         } else {
-            echo  "Өгөгдөл байхгүй";
+            echo "Өгөгдөл байхгүй";
         }
 
 
@@ -243,8 +246,8 @@ echo "Welcome user " . $userID;
             $conn,
             "SELECT * FROM workorder WHERE checkStatus = 2"
         );
-        if (mysqli_num_rows($result)  > 0) {
-        ?>
+        if (mysqli_num_rows($result) > 0) {
+            ?>
             <table border="1">
                 <tr>
                     <td>Захиалгын код</td>
@@ -254,13 +257,13 @@ echo "Welcome user " . $userID;
                     <td>Асуудал </td>
                     <td>Үнийн санал </td>
                     <td>Аж ахуй</td>
-                    <td>Төсөв батлах</td>
+                    <td>Төлөв</td>
                 </tr>
 
                 <?php
                 $i = 0;
                 while ($row = mysqli_fetch_array($result)) {
-                ?>
+                    ?>
                     <tr>
                         <td>
                             <?php echo $row["order_id"]; ?>
@@ -282,35 +285,41 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
-                            ?>
+                                ?>
                                 <p class="status">Баталсан </p>
-                            <?php
+                                <?php
                             } else {
-                            ?>
+                                ?>
                                 <p class="status2">Батлаагүй</p>
-                            <?php
+                                <?php
 
-                            };
+                            }
+                            ;
                             ?>
                         </td>
+
                         <td>
-                            <button>
-                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')" 
-                                href="workDone.php?id=<?php echo $row["order_id"]; ?>">Дууссан</a>
-                            </button>
+                            <?php
+                            if ($row['checkStatus'] == 2) {
+                                ?>
+                                <p style="color:green">Дууссан</p>
+                                <?php
+                            }
+                            ?>
                         </td>
-                    
+
+
                     </tr>
 
-                <?php
+                    <?php
                     $i++;
                 }
                 ?>
             </table>
 
-        <?php
+            <?php
         } else {
-            echo  "Өгөгдөл байхгүй";
+            echo "Өгөгдөл байхгүй";
         }
 
 

@@ -182,9 +182,6 @@
                                                     <input type="hidden" name="id" value="<?php echo $row['order_id'] ?> ">
                                                     <input type="submit" value="Илгээх">
 
-                                                    <!-- <button type="">
-                                                        <a href="./employee/sent.php?id=<?php echo $row['order_id'] ?>">Sent</a>
-                                                    </button> -->
 
 
                                                 </td>
@@ -249,49 +246,27 @@
             ?>
 
 
-            <!-- <div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Та устгахдаа итгэлтэй байна уу?</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">
-                Хаах
-              </button>
-              <a href="./service/orderDelete.php?id=<?php echo $row["order_id"]; ?>">Update</a>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div> -->
-    <!-- /.content -->
-    </div>
 
-    <style>
-        .status1 {
-            color: blueviolet;
-        }
+        <style>
+            .status1 {
+                color: blueviolet;
+            }
 
-        .status {
-            color: green;
-        }
+            .status {
+                color: green;
+            }
 
-        .status2 {
-            color: red;
-        }
-    </style>
-    <!-- /.content-wrapper -->
+            .status2 {
+                color: red;
+            }
+        </style>
+        <!-- /.content-wrapper -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
 
