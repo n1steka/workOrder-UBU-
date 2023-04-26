@@ -15,11 +15,35 @@ $row = mysqli_fetch_array($result);
     <title>Document</title>
 </head>
 
+<div class="diva">
+    <div class="prints">
+        <button onclick="myBack()">
+            Буцах
+        </button>
+    </div>
+
+    <script>
+        const myBack = () => {
+            window.open("http://localhost/order/admin-done.php", "_self");
+        }
+    </script>
+
+
+    <div class="print">
+        <button onclick="window.print();">
+            Хэвлэх
+        </button>
+    </div>
+</div>
+
+
+
+
 <body>
     <div class="heads">
         <tr>
             <th>ОЛОН УЛСЫН УЛААНБААТАР ИХ СУРГУУЛЬ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-           
+
             <th>АЖ АХУЙН ХАНГАМЖИЙН ХЭЛТЭС</th>
         </tr>
     </div>
@@ -176,5 +200,34 @@ $row = mysqli_fetch_array($result);
         position: absolute;
         left: 2%;
         top: 80px;
+    }
+
+    .diva {
+        display: flex;
+        height: 30px;
+    }
+
+    .print {
+        position: absolute;
+        top: 15px;
+        right: 30%;
+    }
+
+    .prints {
+        position: absolute;
+        top: 15px;
+        left: 20px;
+    }
+
+    button:hover {
+        color: white;
+    }
+
+    button {
+        width: 65px;
+        height: 30px;
+        color: black;
+        border: 2px solid #e7e7e7;
+        background-color: #e7e7e7;
     }
 </style>

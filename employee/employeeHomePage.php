@@ -85,7 +85,7 @@ echo "Welcome user " . $userID;
             "SELECT * FROM workorder WHERE employee_id = '$userID'  AND checkStatus IS NULL"
         );
         if (mysqli_num_rows($result) > 0) {
-            ?>
+        ?>
             <table border="1">
                 <tr>
                     <td>Захиалгын код</td>
@@ -101,13 +101,19 @@ echo "Welcome user " . $userID;
                 <?php
                 $i = 0;
                 while ($row = mysqli_fetch_array($result)) {
-                    ?>
+                ?>
                     <tr>
                         <td>
                             <?php echo $row["order_id"]; ?>
                         </td>
                         <td>
-                            <?php echo $row["userID"]; ?>
+                            <?php
+                            $usid =  $row["userID"];
+                            $qry = mysqli_query($conn, "SELECT * FROM users WHERE  user_id = '$usid'");
+                            $rws = mysqli_fetch_array($qry);
+                            echo $rws['username'];
+
+                            ?>
                         </td>
                         <td>
                             <?php echo $row["orderDate"]; ?>
@@ -123,34 +129,32 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
-                                ?>
+                            ?>
                                 <p class="status">Баталсан </p>
-                                <?php
+                            <?php
                             } else {
-                                ?>
+                            ?>
                                 <p class="status2">Батлаагүй</p>
-                                <?php
+                            <?php
 
-                            }
-                            ;
+                            };
                             ?>
                         </td>
                         <td>
                             <button>
-                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')"
-                                    href="./employeeCheck.php?id=<?php echo $row["order_id"] ?> "> Батлах</a>
+                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')" href="./employeeCheck.php?id=<?php echo $row["order_id"] ?> "> Батлах</a>
                             </button>
                         </td>
 
                     </tr>
 
-                    <?php
+                <?php
                     $i++;
                 }
                 ?>
             </table>
 
-            <?php
+        <?php
         } else {
             echo "Өгөгдөл байхгүй";
         }
@@ -166,11 +170,11 @@ echo "Welcome user " . $userID;
             "SELECT * FROM workorder WHERE checkStatus = 1"
         );
         if (mysqli_num_rows($result) > 0) {
-            ?>
+        ?>
             <table border="1">
                 <tr>
                     <td>Захиалгын код</td>
-                    <td>Ажилтны код</td>
+                    <td>Алба Тэнхим</td>
                     <td>Захиалга өгсөн өдөр</td>
                     <td>Эд хөрөнгийн нэр </td>
                     <td>Асуудал </td>
@@ -182,13 +186,20 @@ echo "Welcome user " . $userID;
                 <?php
                 $i = 0;
                 while ($row = mysqli_fetch_array($result)) {
-                    ?>
+                ?>
                     <tr>
                         <td>
                             <?php echo $row["order_id"]; ?>
                         </td>
                         <td>
-                            <?php echo $row["userID"]; ?>
+                            <?php
+
+                            $userid =  $row["userID"];
+                            $qry = mysqli_query($conn, "SELECT * FROM users WHERE  user_id = '$userid'");
+                            $rws = mysqli_fetch_array($qry);
+                            echo $rws['username'];
+
+                            ?>
                         </td>
                         <td>
                             <?php echo $row["orderDate"]; ?>
@@ -204,34 +215,32 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
-                                ?>
+                            ?>
                                 <p class="status">Баталсан </p>
-                                <?php
+                            <?php
                             } else {
-                                ?>
+                            ?>
                                 <p class="status2">Батлаагүй</p>
-                                <?php
+                            <?php
 
-                            }
-                            ;
+                            };
                             ?>
                         </td>
                         <td>
                             <button>
-                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')"
-                                    href="workDone.php?id=<?php echo $row["order_id"]; ?>">Дууссан</a>
+                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')" href="workDone.php?id=<?php echo $row["order_id"]; ?>">Дууссан</a>
                             </button>
                         </td>
 
                     </tr>
 
-                    <?php
+                <?php
                     $i++;
                 }
                 ?>
             </table>
 
-            <?php
+        <?php
         } else {
             echo "Өгөгдөл байхгүй";
         }
@@ -247,11 +256,11 @@ echo "Welcome user " . $userID;
             "SELECT * FROM workorder WHERE checkStatus = 2"
         );
         if (mysqli_num_rows($result) > 0) {
-            ?>
+        ?>
             <table border="1">
                 <tr>
                     <td>Захиалгын код</td>
-                    <td>Ажилтны код</td>
+                    <td>Алба Тэнхим</td>
                     <td>Захиалга өгсөн өдөр</td>
                     <td>Эд хөрөнгийн нэр </td>
                     <td>Асуудал </td>
@@ -263,13 +272,17 @@ echo "Welcome user " . $userID;
                 <?php
                 $i = 0;
                 while ($row = mysqli_fetch_array($result)) {
-                    ?>
+                ?>
                     <tr>
                         <td>
                             <?php echo $row["order_id"]; ?>
                         </td>
                         <td>
-                            <?php echo $row["userID"]; ?>
+                            <?php
+                            $useride =  $row["userID"];
+                            $qry = mysqli_query($conn, "SELECT * FROM users WHERE  user_id = '$useride'");
+                            $rws = mysqli_fetch_array($qry);
+                            echo $rws['username']; ?>
                         </td>
                         <td>
                             <?php echo $row["orderDate"]; ?>
@@ -285,25 +298,24 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
-                                ?>
+                            ?>
                                 <p class="status">Баталсан </p>
-                                <?php
+                            <?php
                             } else {
-                                ?>
+                            ?>
                                 <p class="status2">Батлаагүй</p>
-                                <?php
+                            <?php
 
-                            }
-                            ;
+                            };
                             ?>
                         </td>
 
                         <td>
                             <?php
                             if ($row['checkStatus'] == 2) {
-                                ?>
+                            ?>
                                 <p style="color:green">Дууссан</p>
-                                <?php
+                            <?php
                             }
                             ?>
                         </td>
@@ -311,13 +323,13 @@ echo "Welcome user " . $userID;
 
                     </tr>
 
-                    <?php
+                <?php
                     $i++;
                 }
                 ?>
             </table>
 
-            <?php
+        <?php
         } else {
             echo "Өгөгдөл байхгүй";
         }
