@@ -91,6 +91,7 @@ echo "Welcome user " . $userID;
                     <td>Захиалгын код</td>
                     <td>Ажилтны код</td>
                     <td>Захиалга өгсөн өдөр</td>
+                    <td>Тоот</td>
                     <td>Эд хөрөнгийн нэр </td>
                     <td>Асуудал </td>
                     <td>Үнийн санал </td>
@@ -117,6 +118,9 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <?php echo $row["orderDate"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["roomNumber"]; ?>
                         </td>
                         <td>
                             <?php echo $row["item"]; ?>
@@ -176,6 +180,7 @@ echo "Welcome user " . $userID;
                     <td>Захиалгын код</td>
                     <td>Алба Тэнхим</td>
                     <td>Захиалга өгсөн өдөр</td>
+                    <td>Тоот</td>
                     <td>Эд хөрөнгийн нэр </td>
                     <td>Асуудал </td>
                     <td>Үнийн санал </td>
@@ -203,6 +208,9 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <?php echo $row["orderDate"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["roomNumber"]; ?>
                         </td>
                         <td>
                             <?php echo $row["item"]; ?>
@@ -262,6 +270,7 @@ echo "Welcome user " . $userID;
                     <td>Захиалгын код</td>
                     <td>Алба Тэнхим</td>
                     <td>Захиалга өгсөн өдөр</td>
+                    <td>Тоот</td>
                     <td>Эд хөрөнгийн нэр </td>
                     <td>Асуудал </td>
                     <td>Үнийн санал </td>
@@ -286,6 +295,9 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <?php echo $row["orderDate"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["roomNumber"]; ?>
                         </td>
                         <td>
                             <?php echo $row["item"]; ?>
