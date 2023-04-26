@@ -73,7 +73,8 @@ echo "Welcome user " . $userID;
     <div class="tab">
         <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Төсөв батлагдаагүй</button>
         <button class="tablinks" onclick="openCity(event, 'Paris')">Төсөв батласан</button>
-        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Дууссан ажилууд </button>
+        <button class="tablinks" onclick="openCity(event, 'return')">Төсөв батлахаас татгалзсан </button>
         <button><a href="../service/logout.php">Гарах</a></button>
     </div>
 
@@ -82,7 +83,7 @@ echo "Welcome user " . $userID;
         <?php
         $result = mysqli_query(
             $conn,
-            "SELECT order_id , orderDate  , item , roomNumber, problem , userID , dataStatusId ,money_order FROM workorder WHERE  dataStatusId = 1 AND money_order >=0 AND orderStatus IS NULL "
+            "SELECT * FROM workorder WHERE  money_order >=0 AND orderStatus IS NULL "
         );
         if (mysqli_num_rows($result) > 0) {
         ?>
@@ -97,6 +98,7 @@ echo "Welcome user " . $userID;
                     <td>Үнийн санал </td>
                     <td>Аж ахуй</td>
                     <td>Төсөв батлах</td>
+                    <td>Цуцлах</td>
                 </tr>
 
                 <?php
@@ -145,7 +147,8 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <button>
-                                <a onclick="return confirm ('Та захиалгыг устгахдаа итгэлтэй байна уу  ? ')" href="userOrderDelete.php?id=<?php echo $row["order_id"]; ?>">Устгах</a> </button>
+                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')" href="../return/returnOrder.php?id=<?php echo $row["order_id"]; ?>">Цуцлах</a>
+                            </button>
                         </td>
                     </tr>
 
@@ -165,8 +168,6 @@ echo "Welcome user " . $userID;
     </div>
 
     <div id="Paris" class="tabcontent">
-        <h3>Paris</h3>
-        <p>Paris is the capital of France.</p>
         <?php
         $result = mysqli_query(
             $conn,
@@ -246,8 +247,192 @@ echo "Welcome user " . $userID;
     </div>
 
     <div id="Tokyo" class="tabcontent">
-        <h3>Tokyo</h3>
-        <p>Tokyo is the capital of Japan.</p>
+        <?php
+        $result = mysqli_query(
+            $conn,
+            "SELECT * FROM workorder WHERE checkStatus = 2 AND money_order IS NOT NULL"
+        );
+        if (mysqli_num_rows($result) > 0) {
+        ?>
+            <table border="1">
+                <tr>
+                    <td>Захиалгын код</td>
+                    <td>Алба Тэнхим</td>
+                    <td>Захиалга өгсөн өдөр</td>
+                    <td>Тоот</td>
+                    <td>Эд хөрөнгийн нэр </td>
+                    <td>Асуудал </td>
+                    <td>Үнийн санал </td>
+                    <td>Аж ахуй</td>
+                    <td>Төлөв</td>
+                </tr>
+
+                <?php
+                $i = 0;
+                while ($row = mysqli_fetch_array($result)) {
+                ?>
+                    <tr>
+                        <td>
+                            <?php echo $row["order_id"]; ?>
+                        </td>
+                        <td>
+                            <?php
+                            $useride =  $row["userID"];
+                            $qry = mysqli_query($conn, "SELECT * FROM users WHERE  user_id = '$useride'");
+                            $rws = mysqli_fetch_array($qry);
+                            echo $rws['username']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["orderDate"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["roomNumber"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["item"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["problem"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["money_order"]; ?>
+                        </td>
+                        <td>
+                            <?php if ($row['dataStatusId'] == 1) {
+                            ?>
+                                <p class="status">Баталсан </p>
+                            <?php
+                            } else {
+                            ?>
+                                <p class="status2">Батлаагүй</p>
+                            <?php
+
+                            };
+                            ?>
+                        </td>
+
+                        <td>
+                            <?php
+                            if ($row['checkStatus'] == 2) {
+                            ?>
+                                <p style="color:green">Дууссан</p>
+                            <?php
+                            }
+                            ?>
+                        </td>
+
+
+                    </tr>
+
+                <?php
+                    $i++;
+                }
+                ?>
+            </table>
+
+        <?php
+        } else {
+            echo "Өгөгдөл байхгүй";
+        }
+
+
+        ?>
+    </div>
+
+    <div id="return" class="tabcontent">
+        <?php
+        $result = mysqli_query(
+            $conn,
+            "SELECT * FROM workorder WHERE orderStatus= 2 AND money_order IS NOT NULL"
+        );
+        if (mysqli_num_rows($result) > 0) {
+        ?>
+            <table border="1">
+                <tr>
+                    <td>Захиалгын код</td>
+                    <td>Алба Тэнхим</td>
+                    <td>Захиалга өгсөн өдөр</td>
+                    <td>Тоот</td>
+                    <td>Эд хөрөнгийн нэр </td>
+                    <td>Асуудал </td>
+                    <td>Үнийн санал </td>
+                    <td>Аж ахуй</td>
+                    <td>Төлөв</td>
+                </tr>
+
+                <?php
+                $i = 0;
+                while ($row = mysqli_fetch_array($result)) {
+                ?>
+                    <tr>
+                        <td>
+                            <?php echo $row["order_id"]; ?>
+                        </td>
+                        <td>
+                            <?php
+                            $useride =  $row["userID"];
+                            $qry = mysqli_query($conn, "SELECT * FROM users WHERE  user_id = '$useride'");
+                            $rws = mysqli_fetch_array($qry);
+                            echo $rws['username']; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["orderDate"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["roomNumber"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["item"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["problem"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["money_order"]; ?>
+                        </td>
+                        <td>
+                            <?php if ($row['dataStatusId'] == 1) {
+                            ?>
+                                <p class="status">Баталсан </p>
+                            <?php
+                            } else {
+                            ?>
+                                <p class="status2">Батлаагүй</p>
+                            <?php
+
+                            };
+                            ?>
+                        </td>
+
+
+                        <td>
+                            <?php
+                            if ($row['orderStatus'] == 2) {
+                            ?>
+                                <p style="color:red">Татгалзсан</p>
+                            <?php
+                            }
+                            ?>
+                        </td>
+
+
+
+
+                    </tr>
+
+                <?php
+                    $i++;
+                }
+                ?>
+            </table>
+
+        <?php
+        } else {
+            echo "Өгөгдөл байхгүй";
+        }
+
+
+        ?>
     </div>
 
     <script>

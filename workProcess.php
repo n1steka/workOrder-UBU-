@@ -138,7 +138,7 @@
                                                 <th style="width: 10%; text-align: center">Ажилчин</th>
                                                 <th style="width: 10%; text-align: center">Төлөв</th>
                                                 <th style="width: 10%; text-align: center">ҮСИ</th>
-                                                <th style="width: 10%; text-align: center">ЗА</th>
+                                                <th style="width: 10%; text-align: center">СА</th>
                                             </tr>
                                         </thead>
                                         <tbody>

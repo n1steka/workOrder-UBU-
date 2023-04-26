@@ -29,8 +29,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="admin-index.html" class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-          style="opacity: 0.8;" />
+        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8;" />
         <span class="brand-text font-weight-light">Админ Панел</span>
       </a>
 
@@ -115,13 +114,13 @@
       <!-- Main content -->
       <?php
       include("./service/dbConnect.php");
-      $sql = "SELECT order_id, orderDate, item,money_order,  problem ,userID , dataStatusId FROM workorder WHERE dataStatusId IS NULL ORDER BY orderDate desc";
+      $sql = "SELECT order_id, orderDate, item,money_order, orderStatus  ,problem ,userID , dataStatusId FROM workorder WHERE dataStatusId IS NULL ORDER BY orderDate desc";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
-          ?>
+      ?>
           <section class="content">
             <form action="" method="POST">
               <div class="card">
@@ -132,11 +131,11 @@
                   <table class="table table-striped projects">
                     <thead>
                       <tr>
-                        <th style="width: 30%">Код</th>
-                        <th style="width: 30%">Он/сар/өдөр</th>
-                        <th style="width: 19%">Хэрэгсэл</th>
-                        <th style="width: 15%">Асуудал</th>
+                        <th style="width: 10%">Код</th>
+                        <th style="width: 10%">Он/сар/өдөр</th>
+                        <th style="width: 10%">Хэрэгсэл</th>
                         <th style="width: 15%">Алба тэнхим</th>
+                        <th style="width: 15%">Асуудал</th>
                         <th style="width: 10%; text-align: center">Батлах</th>
                         <th style="width: 10%; text-align: center">Санал</th>
                         <th style="width: 10%; text-align: center">Төлөв</th>
@@ -158,44 +157,46 @@
                           <?php echo $row['item'] ?>
                         </td>
                         <td>
-                          <?php echo $row['problem'] ?>
+                          <?php $tid =  $row['userID'];
+                          $qr =  mysqli_query($conn, "SELECT * FROM users WHERE user_id = '$tid'");
+                          mysqli_num_rows($qr);
+                          $rw = mysqli_fetch_array($qr);
+                          echo $rw['username'];
+                          ?>
                         </td>
                         <td>
-                          <?php echo $row['userID'] ?>
+                          <?php echo $row['problem'] ?>
                         </td>
                         <td class="project-actions text-right">
                           <button>
-                            <a onclick="return confirm ('Та захиалгыг батлахдаа итгэлтэй байна уу? ')"
-                              href="Confirm/adminConfirm.php?id=<?php echo $row["order_id"]; ?>">Батлах</a>
+                            <a onclick="return confirm ('Та захиалгыг батлахдаа итгэлтэй байна уу? ')" href="Confirm/adminConfirm.php?id=<?php echo $row["order_id"]; ?>">Батлах</a>
                           </button>
                         </td>
                         <td class="project-actions text-right">
                           <button>
                             <a href="Confirm/reqBoss.php?id=<?php echo $row["order_id"]; ?>">ЗА</a>
                             <?php if ($row['money_order'] > 1) {
-                              ?>
+                            ?>
                               <p class="status">Санал илгээсэн</p>
-                              <?php
+                            <?php
                             } else {
-                              ?>
+                            ?>
                               <p class="status2">Батлаагүй</p>
-                              <?php
-                            }
-                            ;
+                            <?php
+                            };
                             ?>
                           </button>
                         </td>
                         <td class="project-actions text-right">
-                          <?php if ($row['money_order'] > 1) {
-                            ?>
-                            <p class="status">Санал илгээсэн</p>
-                            <?php
+                          <?php if ($row['orderStatus'] > 0) {
+                          ?>
+                            <p class="status">Санхүү баталсан</p>
+                          <?php
                           } else {
-                            ?>
+                          ?>
                             <p class="status2">Батлаагүй</p>
-                            <?php
-                          }
-                          ;
+                          <?php
+                          };
                           ?>
                         </td>
                       </tr>
@@ -206,7 +207,7 @@
               <!-- /.card -->
             </form>
           </section>
-          <?php
+      <?php
         }
       } else {
         echo "0 results";
@@ -260,7 +261,7 @@
   <script src="dist/js/demo.js"></script>
 
   <script type="text/javascript">
-    $(function () {
+    $(function() {
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -268,86 +269,86 @@
         timer: 3000,
       });
 
-      $(".swalDefaultSuccess").click(function () {
+      $(".swalDefaultSuccess").click(function() {
         Toast.fire({
           icon: "success",
           title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".swalDefaultInfo").click(function () {
+      $(".swalDefaultInfo").click(function() {
         Toast.fire({
           icon: "info",
           title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".swalDefaultError").click(function () {
+      $(".swalDefaultError").click(function() {
         Toast.fire({
           icon: "error",
           title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".swalDefaultWarning").click(function () {
+      $(".swalDefaultWarning").click(function() {
         Toast.fire({
           icon: "warning",
           title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".swalDefaultQuestion").click(function () {
+      $(".swalDefaultQuestion").click(function() {
         Toast.fire({
           icon: "question",
           title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
 
-      $(".toastrDefaultSuccess").click(function () {
+      $(".toastrDefaultSuccess").click(function() {
         toastr.success(
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
         );
       });
-      $(".toastrDefaultInfo").click(function () {
+      $(".toastrDefaultInfo").click(function() {
         toastr.info(
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
         );
       });
-      $(".toastrDefaultError").click(function () {
+      $(".toastrDefaultError").click(function() {
         toastr.error(
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
         );
       });
-      $(".toastrDefaultWarning").click(function () {
+      $(".toastrDefaultWarning").click(function() {
         toastr.warning(
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
         );
       });
 
-      $(".toastsDefaultDefault").click(function () {
+      $(".toastsDefaultDefault").click(function() {
         $(document).Toasts("create", {
           title: "Toast Title",
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultTopLeft").click(function () {
+      $(".toastsDefaultTopLeft").click(function() {
         $(document).Toasts("create", {
           title: "Toast Title",
           position: "topLeft",
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultBottomRight").click(function () {
+      $(".toastsDefaultBottomRight").click(function() {
         $(document).Toasts("create", {
           title: "Toast Title",
           position: "bottomRight",
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultBottomLeft").click(function () {
+      $(".toastsDefaultBottomLeft").click(function() {
         $(document).Toasts("create", {
           title: "Toast Title",
           position: "bottomLeft",
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultAutohide").click(function () {
+      $(".toastsDefaultAutohide").click(function() {
         $(document).Toasts("create", {
           title: "Toast Title",
           autohide: true,
@@ -355,14 +356,14 @@
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultNotFixed").click(function () {
+      $(".toastsDefaultNotFixed").click(function() {
         $(document).Toasts("create", {
           title: "Toast Title",
           fixed: false,
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultFull").click(function () {
+      $(".toastsDefaultFull").click(function() {
         $(document).Toasts("create", {
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
           title: "Toast Title",
@@ -370,7 +371,7 @@
           icon: "fas fa-envelope fa-lg",
         });
       });
-      $(".toastsDefaultFullImage").click(function () {
+      $(".toastsDefaultFullImage").click(function() {
         $(document).Toasts("create", {
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
           title: "Toast Title",
@@ -379,7 +380,7 @@
           imageAlt: "User Picture",
         });
       });
-      $(".toastsDefaultSuccess").click(function () {
+      $(".toastsDefaultSuccess").click(function() {
         $(document).Toasts("create", {
           class: "bg-success",
           title: "Toast Title",
@@ -387,7 +388,7 @@
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultInfo").click(function () {
+      $(".toastsDefaultInfo").click(function() {
         $(document).Toasts("create", {
           class: "bg-info",
           title: "Toast Title",
@@ -395,7 +396,7 @@
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultWarning").click(function () {
+      $(".toastsDefaultWarning").click(function() {
         $(document).Toasts("create", {
           class: "bg-warning",
           title: "Toast Title",
@@ -403,7 +404,7 @@
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultDanger").click(function () {
+      $(".toastsDefaultDanger").click(function() {
         $(document).Toasts("create", {
           class: "bg-danger",
           title: "Toast Title",
@@ -411,7 +412,7 @@
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultMaroon").click(function () {
+      $(".toastsDefaultMaroon").click(function() {
         $(document).Toasts("create", {
           class: "bg-maroon",
           title: "Toast Title",
