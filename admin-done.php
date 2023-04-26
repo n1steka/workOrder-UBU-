@@ -80,7 +80,7 @@ session_start();
                         </li>
 
                         <li class="nav-item">
-                            <a href="admin-done.php" class="nav-link">
+                            <a href="admin-done.php" class="nav-link active">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>Дууссан захиалгууд</p>
                             </a>
@@ -246,9 +246,12 @@ session_start();
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <button>
+                                                    <div class="tag">
                                                         <a href="report/print.php?id=<?php echo $row['order_id'] ?> ">Харах</a>
-                                                    </button>
+                                                    </div>
+
+
+
                                                 </td>
 
                                                 </td>
@@ -281,6 +284,27 @@ session_start();
 
                 .status2 {
                     color: red;
+                }
+
+                .tag a:link,
+                a:visited {
+                    background-color: white;
+                    color: black;
+                    border: 2px solid green;
+                    padding: 0px 10px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                }
+
+                .tag a:hover,
+                .tag a:active {
+                    background-color: green;
+                    color: white;
+                }
+                .tag  {
+                    position: absolute;
+                    top: 123px;
                 }
             </style>
 

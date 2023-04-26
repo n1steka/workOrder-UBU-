@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="workProcess.php" class="nav-link">
+                            <a href="workProcess.php" class="nav-link active">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>Төлөв</p>
                             </a>

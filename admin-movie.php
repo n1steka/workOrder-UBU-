@@ -51,13 +51,13 @@ $adminID = $_SESSION['admin_id'];
               </a>
             </li>
             <li class="nav-item">
-              <a href="admin-users.php" class="nav-link">
+              <a href="admin-users.php" class="nav-link ">
                 <i class="nav-icon fas fa-user"></i>
                 <p>Захиалгын жагсаалт</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="admin-orderConfirm.php" class="nav-link">
+              <a href="admin-orderConfirm.php" class="nav-link ">
                 <i class="nav-icon fas fa-user"></i>
                 <p>Баталсан захиалга</p>
               </a>

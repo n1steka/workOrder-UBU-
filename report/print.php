@@ -16,41 +16,17 @@ $row = mysqli_fetch_array($result);
 </head>
 
 <body>
-
+    <div class="heads">
+        <tr>
+            <th>ОЛОН УЛСЫН УЛААНБААТАР ИХ СУРГУУЛЬ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+           
+            <th>АЖ АХУЙН ХАНГАМЖИЙН ХЭЛТЭС</th>
+        </tr>
+    </div>
     <div class="container">
-        <table border="1">
+        <table border="0">
             <div class="contains">
-                <table>
-                    <tr>
-                        <th>ОЛОН УЛСЫН УЛААНБААТАР ИХ СУРГУУЛЬ</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>АЖ АХУЙН ХАНГАМЖИЙН ХЭЛТЭС</th>
-                    </tr>
+
             </div>
             <table>
                 <div class="table">
@@ -173,7 +149,7 @@ $row = mysqli_fetch_array($result);
 <style>
     .container {
         margin-top: 100px;
-        margin-left: 10%;
+        margin-left: 3%;
     }
 
     .table {
@@ -194,5 +170,11 @@ $row = mysqli_fetch_array($result);
         border: 1px solid #dddddd;
         text-align: left;
         padding: 8px;
+    }
+
+    .heads {
+        position: absolute;
+        left: 2%;
+        top: 80px;
     }
 </style>

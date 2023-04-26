@@ -44,7 +44,7 @@ $adminID = $_SESSION['admin_id'];
            with font-awesome or any other icon font library -->
 
             <li class="nav-item">
-              <a href="admin-movie.php" class="nav-link active">
+              <a href="admin-movie.php" class="nav-link ">
                 <i class="nav-icon fas fa-video"></i>
                 <p>Алба тэнхим</p>
               </a>
@@ -70,7 +70,7 @@ $adminID = $_SESSION['admin_id'];
             </li>
 
             <li class="nav-item">
-              <a href="employee-user.php" class="nav-link">
+              <a href="employee-user.php" class="nav-link active">
                 <i class="nav-icon fas fa-user"></i>
                 <p>Ажилчдын мэдээлэл</p>
               </a>
