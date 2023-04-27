@@ -146,14 +146,15 @@ session_start();
                                             <th style="width: 10%; text-align: center">Ажилчин</th>
                                             <th style="width: 10%; text-align: center">Төлөв</th>
                                             <th style="width: 10%; text-align: center">ҮСИ</th>
-                                            <th style="width: 10%; text-align: center">ЗА</th>
+                                            <th style="width: 10%; text-align: center">СА</th>
                                             <th style="width: 10%; text-align: center">Дэлгэрэнгүй</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php
-                                        while ($row = $result->fetch_assoc()) {
-                                        ?>
+                                    <?php
+                                    while ($row = $result->fetch_assoc()) {
+                                    ?>
+                                        <tbody>
+
                                             <tr>
                                                 <td>
                                                     <?php echo $row['order_id'] ?>
@@ -250,21 +251,17 @@ session_start();
                                                     };
                                                     ?>
                                                 </td>
+
                                                 <td>
-                                                    <div class="tag">
+                                                    <button>
                                                         <a href="report/print.php?id=<?php echo $row['order_id'] ?> ">Харах</a>
-                                                    </div>
-
-
+                                                    </button>
 
                                                 </td>
-
-                                                </td>
-                                            <?php
-                                        }
-                                            ?>
                                             </tr>
-                                    </tbody>
+                                        </tbody>
+                                    <?php  }  ?>
+
                                 </table>
                             </div>
                         </div>
@@ -303,17 +300,6 @@ session_start();
                     text-align: center;
                     text-decoration: none;
                     display: inline-block;
-                }
-
-                .tag a:hover,
-                .tag a:active {
-                    background-color: green;
-                    color: white;
-                }
-
-                .tag {
-                    position: absolute;
-                    top: 123px;
                 }
             </style>
 

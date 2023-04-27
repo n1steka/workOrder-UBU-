@@ -238,7 +238,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                    </div>
                         <!-- /.card -->
                     </form>
                 </section>
