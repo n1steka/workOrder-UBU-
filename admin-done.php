@@ -35,7 +35,6 @@ session_start();
                 <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8;" />
                 <span class="brand-text font-weight-light">Админ Панел</span>
             </a>
-
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar Menu -->
@@ -70,12 +69,7 @@ session_start();
                                 <p>Төлөв</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="employee-user.php" class="nav-link">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>Ажилчдын мэдээлэл</p>
-                            </a>
-                        </li>
+
 
                         <li class="nav-item">
                             <a href="admin-done.php" class="nav-link active">
@@ -83,6 +77,13 @@ session_start();
                                 <p>Дууссан захиалгууд</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="employee-user.php" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>Ажилчдын мэдээлэл</p>
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <a href="./service/logout.php" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -99,6 +100,12 @@ session_start();
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
+            <div class="donwload">
+                <button>
+
+                </button>
+                Тайлан татах
+            </div>
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
@@ -115,35 +122,38 @@ session_start();
             include("./service/dbConnect.php");
             $sql = "SELECT * FROM workorder  WHERE checkStatus = 2 AND employee_id IS NOT NULL ORDER BY orderDate DESC ";
             $result = $conn->query($sql);
-
+            $dev = array();
             if ($result->num_rows > 0) {
                 // output data of each row
-                while ($row = $result->fetch_assoc()) {
             ?>
-                    <section class="content">
-                        <form action="./employee/sent.php" method="POST">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Хэрэглэгчид</h3>
-                                </div>
-                                <div class="card-body p-0">
-                                    <table class="table table-striped projects">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 10%">Код</th>
-                                                <th style="width: 30%">Он/сар/өдөр</th>
-                                                <th style="width: 19%">Хэрэгсэл</th>
-                                                <th style="width: 10%; text-align: center">Тоот</th>
-                                                <th style="width: 15%">Асуудал</th>
-                                                <th style="width: 30%">Алба Тэнхим</th>
-                                                <th style="width: 10%; text-align: center">Ажилчин</th>
-                                                <th style="width: 10%; text-align: center">Төлөв</th>
-                                                <th style="width: 10%; text-align: center">ҮСИ</th>
-                                                <th style="width: 10%; text-align: center">ЗА</th>
-                                                <th style="width: 10%; text-align: center">Дэлгэрэнгүй</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+
+                <section class="content">
+                    <form action="./employee/sent.php" method="POST">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Хэрэглэгчид</h3>
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table table-striped projects">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10%">Код</th>
+                                            <th style="width: 30%">Он/сар/өдөр</th>
+                                            <th style="width: 19%">Хэрэгсэл</th>
+                                            <th style="width: 10%; text-align: center">Тоот</th>
+                                            <th style="width: 15%">Асуудал</th>
+                                            <th style="width: 30%">Алба Тэнхим</th>
+                                            <th style="width: 10%; text-align: center">Ажилчин</th>
+                                            <th style="width: 10%; text-align: center">Төлөв</th>
+                                            <th style="width: 10%; text-align: center">ҮСИ</th>
+                                            <th style="width: 10%; text-align: center">ЗА</th>
+                                            <th style="width: 10%; text-align: center">Дэлгэрэнгүй</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        while ($row = $result->fetch_assoc()) {
+                                        ?>
                                             <tr>
                                                 <td>
                                                     <?php echo $row['order_id'] ?>
@@ -250,16 +260,19 @@ session_start();
                                                 </td>
 
                                                 </td>
+                                            <?php
+                                        }
+                                            ?>
                                             </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
-                            <!-- /.card -->
-                        </form>
-                    </section>
+                        </div>
+                        <!-- /.card -->
+                    </form>
+                </section>
             <?php
-                }
+
             } else {
                 echo "0 results";
             }

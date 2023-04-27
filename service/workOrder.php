@@ -9,7 +9,7 @@ if (isset($_POST['save-btn'])) {
     $subject = $_POST['subject'];
 
 
-    $query = "INSERT INTO workorder (item,problem, userID, roomNumber) VALUES ('$item' , '$subject' , '$userID' , '$room')";
+    $query = "INSERT INTO workorder (item,problem, userID, roomNumber , checkStatus ) VALUES ('$item' , '$subject' , '$userID' , '$room' , '0')";
     $data = mysqli_query($conn, $query);
 
     if ($data) {

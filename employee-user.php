@@ -68,7 +68,12 @@ $adminID = $_SESSION['admin_id'];
                 <p>Төлөв</p>
               </a>
             </li>
-
+            <li class="nav-item">
+              <a href="admin-done.php" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Дууссан захиалгууд</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="employee-user.php" class="nav-link active">
                 <i class="nav-icon fas fa-user"></i>
@@ -76,12 +81,7 @@ $adminID = $_SESSION['admin_id'];
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="admin-done.php" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
-                <p>Дууссан захиалгууд</p>
-              </a>
-            </li>
+           
             <li class="nav-item">
               <a href="./service/logout.php" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>

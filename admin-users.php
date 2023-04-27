@@ -70,7 +70,12 @@
                 <p>Төлөв</p>
               </a>
             </li>
-
+            <li class="nav-item">
+              <a href="admin-done.php" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Дууссан захиалгууд</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="employee-user.php" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
@@ -78,12 +83,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="admin-done.php" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
-                <p>Дууссан захиалгууд</p>
-              </a>
-            </li>
+
             <li class="nav-item">
               <a href="./service/logout.php" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -119,29 +119,32 @@
 
       if ($result->num_rows > 0) {
         // output data of each row
-        while ($row = $result->fetch_assoc()) {
       ?>
-          <section class="content">
-            <form action="" method="POST">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">Хэрэглэгчид</h3>
-                </div>
-                <div class="card-body p-0">
-                  <table class="table table-striped projects">
-                    <thead>
-                      <tr>
-                        <th style="width: 10%">Код</th>
-                        <th style="width: 10%">Он/сар/өдөр</th>
-                        <th style="width: 10%">Хэрэгсэл</th>
-                        <th style="width: 15%">Алба тэнхим</th>
-                        <th style="width: 15%">Асуудал</th>
-                        <th style="width: 10%; text-align: center">Батлах</th>
-                        <th style="width: 10%; text-align: center">Санал</th>
-                        <th style="width: 10%; text-align: center">Төлөв</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+
+        <section class="content">
+          <form action="" method="POST">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Хэрэглэгчид</h3>
+              </div>
+              <div class="card-body p-0">
+                <table class="table table-striped projects">
+                  <thead>
+                    <tr>
+                      <th style="width: 10%">Код</th>
+                      <th style="width: 10%">Он/сар/өдөр</th>
+                      <th style="width: 10%">Хэрэгсэл</th>
+                      <th style="width: 15%">Алба тэнхим</th>
+                      <th style="width: 15%">Асуудал</th>
+                      <th style="width: 10%; text-align: center">Батлах</th>
+                      <th style="width: 10%; text-align: center">Санал итгээх</th>
+                      <th style="width: 10%; text-align: center">Төлөв</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    while ($row = $result->fetch_assoc()) {
+                    ?>
                       <tr>
                         <td>
                           <?php echo $row['order_id'] ?>
@@ -174,7 +177,7 @@
                         </td>
                         <td class="project-actions text-right">
                           <button>
-                            <a href="Confirm/reqBoss.php?id=<?php echo $row["order_id"]; ?>">ЗА</a>
+                            <a href="Confirm/reqBoss.php?id=<?php echo $row["order_id"]; ?>">Дэлгэрэнгүй</a>
                             <?php if ($row['money_order'] > 1) {
                             ?>
                               <p class="status">Санал илгээсэн</p>
@@ -199,16 +202,18 @@
                           };
                           ?>
                         </td>
+                      <?php
+                    }
+                      ?>
                       </tr>
-                    </tbody>
-                  </table>
-                </div>
+                  </tbody>
+                </table>
               </div>
-              <!-- /.card -->
-            </form>
-          </section>
+            </div>
+            <!-- /.card -->
+          </form>
+        </section>
       <?php
-        }
       } else {
         echo "0 results";
       }

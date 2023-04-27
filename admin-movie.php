@@ -30,8 +30,7 @@ $adminID = $_SESSION['admin_id'];
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a class="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-          style="opacity: 0.8" />
+        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8" />
         <span class="brand-text font-weight-light">Админ Панел</span>
       </a>
 
@@ -69,7 +68,12 @@ $adminID = $_SESSION['admin_id'];
                 <p>Төлөв</p>
               </a>
             </li>
-
+            <li class="nav-item">
+              <a href="admin-done.php" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Дууссан захиалгууд</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="employee-user.php" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
@@ -77,12 +81,7 @@ $adminID = $_SESSION['admin_id'];
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="admin-done.php" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
-                <p>Дууссан захиалгууд</p>
-              </a>
-            </li>
+
             <li class="nav-item">
               <a href="./service/logout.php" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -145,71 +144,67 @@ $adminID = $_SESSION['admin_id'];
       $sql = "SELECT user_id, lastname,username, email, phone FROM users ORDER BY username";
       $result = $conn->query($sql);
 
-      if ($result->num_rows > 0) {
-        // output data of each row
-        while ($row = $result->fetch_assoc()) {
-          // echo "id: " . $row["user_id"] . " - Name: " . $row["username"] . " " . $row["email"] . " " . $row["phone"] . "<br>";
-          echo '<section class="content">';
-          echo '<!-- Default box -->';
-          echo '<div class="card">';
-          echo '<div class="card-header">';
-          echo '<h3 class="card-title">Алба тэнхим</h3>';
-          echo '</div>';
-          echo '<div class="card-body p-0">';
-          echo '<table class="table table-striped projects">';
-          echo '<thead>';
-          echo '<tr>';
-          echo '<th style="width: 1%">Код</th>';
-          echo '<th style="width: 30%">Алба тэнхим</th>';
-          echo '<th style="width: 19%">Имэйл</th>';
-          echo '<th style="width: "15%">Дугаар</th>';
-          echo '<th style="width: 10%; text-align: center">Тохиргоо</th>';
-          echo '</tr>';
-          echo '</thead>';
-          echo '<tbody>';
-          echo '<tr>';
-          echo "<td>" . $row['user_id'] . "</td>";
-          echo '<td>';
-          echo "<a>" . $row['username'] . "</a>";
-          echo '<br />';
-          echo '</td>';
-          echo "<td>" . $row['email'] . "</td>";
-          echo "<td>" . $row['phone'] . "</td>";
-          echo '<td class="project-actions text-right">';
+      // output data of each row
+      while ($row = $result->fetch_assoc()) {
+        // echo "id: " . $row["user_id"] . " - Name: " . $row["username"] . " " . $row["email"] . " " . $row["phone"] . "<br>";
+        echo '<section class="content">';
+        echo '<!-- Default box -->';
+        echo '<div class="card">';
+        echo '<div class="card-header">';
+        echo '<h3 class="card-title">Алба тэнхим</h3>';
+        echo '</div>';
+        echo '<div class="card-body p-0">';
+        echo '<table class="table table-striped projects">';
+        echo '<thead>';
+        echo '<tr>';
+        echo '<th style="width: 1%">Код</th>';
+        echo '<th style="width: 30%">Алба тэнхим</th>';
+        echo '<th style="width: 19%">Имэйл</th>';
+        echo '<th style="width: "15%">Дугаар</th>';
+        echo '<th style="width: 10%; text-align: center">Тохиргоо</th>';
+        echo '</tr>';
+        echo '</thead>';
+        echo '<tbody>';
+        echo '<tr>';
+        echo "<td>" . $row['user_id'] . "</td>";
+        echo '<td>';
+        echo "<a>" . $row['username'] . "</a>";
+        echo '<br />';
+        echo '</td>';
+        echo "<td>" . $row['email'] . "</td>";
+        echo "<td>" . $row['phone'] . "</td>";
+        echo '<td class="project-actions text-right">';
 
-          ?>
-          <button type="button" class="btn btn-default" data-toggle="modal">
-            <a onclick="return confirm('Утгахдаа итгэлтэй байна уу ? ')"
-              href="./service/userDelete.php?id=<?php echo $row["user_id"]; ?>">Устгах</a></button>
+      ?>
+        <button type="button" class="btn btn-default" data-toggle="modal">
+          <a onclick="return confirm('Утгахдаа итгэлтэй байна уу ? ')" href="./service/userDelete.php?id=<?php echo $row["user_id"]; ?>">Устгах</a></button>
 
-          <script>
-            var modal = document.getElementById('id01');
-            window.onclick = function (event) {
-              if (event.target == modal) {
-                modal.style.display = "none";
-              }
+        <script>
+          var modal = document.getElementById('id01');
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
             }
-          </script>
-          
-          <button onclick="" type="button" class="btn btn-default" data-toggle="modal">
-            <a href="./service/userUpdate.php?id=<?php echo $row["user_id"]; ?>">Засах</a>
-          </button>
+          }
+        </script>
 
-          <?php
-          echo '</button>';
-          echo '</td>';
-          echo '</tr>';
-          echo '</tbody>';
-          echo '</table>';
-          echo '</div>';
-          echo '<!-- /.card-body -->';
-          echo '</div>';
-          echo '<!-- /.card -->';
-          echo '</section>';
-        }
-      } else {
-        echo "0 results";
+        <button onclick="" type="button" class="btn btn-default" data-toggle="modal">
+          <a href="./service/userUpdate.php?id=<?php echo $row["user_id"]; ?>">Засах</a>
+        </button>
+
+      <?php
+        echo '</button>';
+        echo '</td>';
+        echo '</tr>';
+        echo '</tbody>';
+        echo '</table>';
+        echo '</div>';
+        echo '<!-- /.card-body -->';
+        echo '</div>';
+        echo '<!-- /.card -->';
+        echo '</section>';
       }
+
       $conn->close();
       ?>
 
@@ -228,35 +223,29 @@ $adminID = $_SESSION['admin_id'];
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Албаны код : </label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Албаны код"
-                      required="true" name="classCode" />
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Албаны код" required="true" name="classCode" />
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Овог : </label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Овог "
-                      name="username" />
+                    <label for="exampleInputPassword1">Албаны нэр : </label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Албаны нэр: " name="username" />
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Нэр : </label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Нэр"
-                      name="lastname" />
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Нэр" name="lastname" />
                   </div>
 
                   <div class="form-group">
                     <label for="exampleInputPassword1">Утасны дугаар :</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Утасны дугаар"
-                      name="phone" />
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Утасны дугаар" name="phone" />
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Имэйл : </label>
-                    <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Имэйл "
-                      name="email" />
+                    <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Имэйл " name="email" />
                   </div>
 
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password : </label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Нууц үг "
-                      name="password" />
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Нууц үг " name="password" />
                   </div>
                   <div class="form-group">
                     <input type="radio" name="ab" value="Эрэгтэй" required>Эрэгтэй &nbsp; &nbsp; &nbsp; &nbsp;
@@ -295,35 +284,29 @@ $adminID = $_SESSION['admin_id'];
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Албаны код : </label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Албаны код"
-                      required="true" name="classCode" />
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Албаны код" required="true" name="classCode" />
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Овог : </label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Овог "
-                      name="username" />
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Овог " name="username" />
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Нэр : </label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Нэр"
-                      name="lastname" />
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Нэр" name="lastname" />
                   </div>
 
                   <div class="form-group">
                     <label for="exampleInputPassword1">Утасны дугаар :</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Утасны дугаар"
-                      name="phone" />
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Утасны дугаар" name="phone" />
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Имэйл : </label>
-                    <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Имэйл "
-                      name="email" />
+                    <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Имэйл " name="email" />
                   </div>
 
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password : </label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Нууц үг "
-                      name="password" />
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Нууц үг " name="password" />
                   </div>
                   <div class="form-group">
                     <input type="radio" name="ab" value="Эрэгтэй" required>Эрэгтэй &nbsp; &nbsp; &nbsp; &nbsp;
@@ -349,9 +332,9 @@ $adminID = $_SESSION['admin_id'];
       </div>
 
 
-  
-  </div>
-  <!-- /.modal-dialog -->
+
+    </div>
+    <!-- /.modal-dialog -->
   </div> -->
   <!-- /.content -->
   </div>
@@ -375,7 +358,7 @@ $adminID = $_SESSION['admin_id'];
   <script src="dist/js/demo.js"></script>
 
   <script type="text/javascript">
-    $(function () {
+    $(function() {
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -383,86 +366,86 @@ $adminID = $_SESSION['admin_id'];
         timer: 3000,
       });
 
-      $(".swalDefaultSuccess").click(function () {
+      $(".swalDefaultSuccess").click(function() {
         Toast.fire({
           icon: "success",
           title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".swalDefaultInfo").click(function () {
+      $(".swalDefaultInfo").click(function() {
         Toast.fire({
           icon: "info",
           title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".swalDefaultError").click(function () {
+      $(".swalDefaultError").click(function() {
         Toast.fire({
           icon: "error",
           title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".swalDefaultWarning").click(function () {
+      $(".swalDefaultWarning").click(function() {
         Toast.fire({
           icon: "warning",
           title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".swalDefaultQuestion").click(function () {
+      $(".swalDefaultQuestion").click(function() {
         Toast.fire({
           icon: "question",
           title: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
 
-      $(".toastrDefaultSuccess").click(function () {
+      $(".toastrDefaultSuccess").click(function() {
         toastr.success(
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
         );
       });
-      $(".toastrDefaultInfo").click(function () {
+      $(".toastrDefaultInfo").click(function() {
         toastr.info(
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
         );
       });
-      $(".toastrDefaultError").click(function () {
+      $(".toastrDefaultError").click(function() {
         toastr.error(
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
         );
       });
-      $(".toastrDefaultWarning").click(function () {
+      $(".toastrDefaultWarning").click(function() {
         toastr.warning(
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr."
         );
       });
 
-      $(".toastsDefaultDefault").click(function () {
+      $(".toastsDefaultDefault").click(function() {
         $(document).Toasts("create", {
           title: "Toast Title",
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultTopLeft").click(function () {
+      $(".toastsDefaultTopLeft").click(function() {
         $(document).Toasts("create", {
           title: "Toast Title",
           position: "topLeft",
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultBottomRight").click(function () {
+      $(".toastsDefaultBottomRight").click(function() {
         $(document).Toasts("create", {
           title: "Toast Title",
           position: "bottomRight",
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultBottomLeft").click(function () {
+      $(".toastsDefaultBottomLeft").click(function() {
         $(document).Toasts("create", {
           title: "Toast Title",
           position: "bottomLeft",
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultAutohide").click(function () {
+      $(".toastsDefaultAutohide").click(function() {
         $(document).Toasts("create", {
           title: "Toast Title",
           autohide: true,
@@ -470,14 +453,14 @@ $adminID = $_SESSION['admin_id'];
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultNotFixed").click(function () {
+      $(".toastsDefaultNotFixed").click(function() {
         $(document).Toasts("create", {
           title: "Toast Title",
           fixed: false,
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultFull").click(function () {
+      $(".toastsDefaultFull").click(function() {
         $(document).Toasts("create", {
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
           title: "Toast Title",
@@ -485,7 +468,7 @@ $adminID = $_SESSION['admin_id'];
           icon: "fas fa-envelope fa-lg",
         });
       });
-      $(".toastsDefaultFullImage").click(function () {
+      $(".toastsDefaultFullImage").click(function() {
         $(document).Toasts("create", {
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
           title: "Toast Title",
@@ -494,7 +477,7 @@ $adminID = $_SESSION['admin_id'];
           imageAlt: "User Picture",
         });
       });
-      $(".toastsDefaultSuccess").click(function () {
+      $(".toastsDefaultSuccess").click(function() {
         $(document).Toasts("create", {
           class: "bg-success",
           title: "Toast Title",
@@ -502,7 +485,7 @@ $adminID = $_SESSION['admin_id'];
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultInfo").click(function () {
+      $(".toastsDefaultInfo").click(function() {
         $(document).Toasts("create", {
           class: "bg-info",
           title: "Toast Title",
@@ -510,7 +493,7 @@ $adminID = $_SESSION['admin_id'];
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultWarning").click(function () {
+      $(".toastsDefaultWarning").click(function() {
         $(document).Toasts("create", {
           class: "bg-warning",
           title: "Toast Title",
@@ -518,7 +501,7 @@ $adminID = $_SESSION['admin_id'];
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultDanger").click(function () {
+      $(".toastsDefaultDanger").click(function() {
         $(document).Toasts("create", {
           class: "bg-danger",
           title: "Toast Title",
@@ -526,7 +509,7 @@ $adminID = $_SESSION['admin_id'];
           body: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
         });
       });
-      $(".toastsDefaultMaroon").click(function () {
+      $(".toastsDefaultMaroon").click(function() {
         $(document).Toasts("create", {
           class: "bg-maroon",
           title: "Toast Title",
