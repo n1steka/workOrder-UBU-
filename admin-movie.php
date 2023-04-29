@@ -7,7 +7,6 @@ if (empty($_SESSION['admin_id'])) {
     window.open("http://localhost/order/pages/userLogin.php", "_self");
   </script>
 <?php
-
 }
 
 // if (!empty($_SESSION['admin_id'])) {
