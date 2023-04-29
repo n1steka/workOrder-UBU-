@@ -15,8 +15,6 @@ while ($row =  mysqli_fetch_assoc($sql)) {
     $data[] = $row;
 }
 
-$output = "";
-
 ?>
 
 <table border="1">

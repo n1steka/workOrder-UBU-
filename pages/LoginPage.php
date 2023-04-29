@@ -13,11 +13,17 @@ if (isset($_POST['submit'])) {
 	if ($num > 0) {
 		$row = mysqli_fetch_assoc($sql);
 		$_SESSION['admin_id'] = $row['admin_id'];
+		$_SESSION['type'] = 'admin';
 		header("location: ../admin-movie.php ");
 	} else {
 		$msg = "Таны нууц үг эсвэл нэвтрэх нэр буруу байна";
 	}
+	
 }
+?>
+
+<?php
+
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +58,7 @@ if (isset($_POST['submit'])) {
 			<option value="LoginPage">Админ</option>
 			<option value="bossLogin">Ан жүмбүг</option>
 			<option value="employeeLogin">Аж ахуйн ажилчин</option>
-			
+
 		</select>
 
 		<script type="text/javascript">
