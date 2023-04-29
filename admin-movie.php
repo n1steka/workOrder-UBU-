@@ -1,7 +1,21 @@
 <?php
 session_start();
+
+if (empty($_SESSION['admin_id'])) {
+?>
+  <script>
+    window.open("http://localhost/order/pages/userLogin.php", "_self");
+  </script>
+<?php
+
+}
+
+// if (!empty($_SESSION['admin_id'])) {
 $adminID = $_SESSION['admin_id'];
+// }
 echo  $adminID;
+
+
 ?>
 <!DOCTYPE html>
 <html>

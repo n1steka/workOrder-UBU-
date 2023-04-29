@@ -1,8 +1,15 @@
 <?php
 session_start();
-$userID = $_SESSION['boss_id'];
+if (empty($_SESSION['boss_id'])) {
+?>
+    <script>
+        window.open("http://localhost/order/pages/userLogin.php", "_self");
+    </script>
+<?php
+}
+
 include("../service/dbConnect.php");
-echo "Welcome user " . $userID;
+$userID = $_SESSION['boss_id'];
 ?>
 
 <!DOCTYPE html>

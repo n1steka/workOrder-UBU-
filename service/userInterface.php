@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+if (empty($_SESSION['user_id'])) {
+?>
+    <script>
+        window.open("http://localhost/order/pages/userLogin.php", "_self");
+    </script>
+<?php
+}
 $userID = $_SESSION['user_id'];
 echo "Welcome user " . $userID;
 ?>
@@ -49,7 +57,7 @@ echo "Welcome user " . $userID;
             <body>
                 <?php
                 if (mysqli_num_rows($result) > 0) {
-                    ?>
+                ?>
                     <table border="1">
                         <tr>
                             <td>Захиалгын код</td>1
@@ -64,7 +72,7 @@ echo "Welcome user " . $userID;
                         <?php
                         $i = 0;
                         while ($row = mysqli_fetch_array($result)) {
-                            ?>
+                        ?>
                             <tr>
                                 <td>
                                     <?php echo $row["order_id"]; ?>
@@ -86,44 +94,41 @@ echo "Welcome user " . $userID;
                                 </td>
                                 <td>
                                     <?php if ($row['dataStatusId'] == 1) {
-                                        ?>
+                                    ?>
                                         <p class="status">Баталсан </p>
-                                        <?php
+                                    <?php
                                     } else {
-                                        ?>
+                                    ?>
                                         <p class="status2">Батлаагүй</p>
-                                        <?php
+                                    <?php
 
-                                    }
-                                    ;
+                                    };
                                     ?>
                                 </td>
                                 <td>
                                     <?php if ($row['dataStatusId'] == 1) {
-                                        ?>
+                                    ?>
                                         <p class="status">Баталсан </p>
-                                        <?php
+                                    <?php
                                     } else {
-                                        ?>
+                                    ?>
                                         <p class="status2">Батлаагүй</p>
-                                        <?php
+                                    <?php
 
-                                    }
-                                    ;
+                                    };
                                     ?>
                                 </td>
                                 <td>
                                     <button>
-                                        <a onclick="return confirm ('Та захиалгыг устгахдаа итгэлтэй байна уу  ? ')"
-                                            href="userOrderDelete.php?id=<?php echo $row["order_id"]; ?>">Устгах</a> </button>
+                                        <a onclick="return confirm ('Та захиалгыг устгахдаа итгэлтэй байна уу  ? ')" href="userOrderDelete.php?id=<?php echo $row["order_id"]; ?>">Устгах</a> </button>
                                 </td>
                             </tr>
-                            <?php
+                        <?php
                             $i++;
                         }
                         ?>
                     </table>
-                    <?php
+                <?php
                 } else {
                     echo "Судлагдаж буй захиалга байхгүй байна";
                 }
@@ -219,7 +224,7 @@ echo "Welcome user " . $userID;
             "SELECT order_id , orderDate  , item , problem , userID , dataStatusId ,orderStatus FROM workorder WHERE userID = '$userID' AND dataStatusId = 1 AND orderStatus IS NULL "
         );
         if (mysqli_num_rows($result) > 0) {
-            ?>
+        ?>
             <table border="1">
                 <tr>
                     <td>Захиалгын код</td>
@@ -235,7 +240,7 @@ echo "Welcome user " . $userID;
                 <?php
                 $i = 0;
                 while ($row = mysqli_fetch_array($result)) {
-                    ?>
+                ?>
                     <tr>
                         <td>
                             <?php echo $row["order_id"]; ?>
@@ -254,47 +259,44 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
-                                ?>
+                            ?>
                                 <p class="status">Баталсан </p>
-                                <?php
+                            <?php
                             } else {
-                                ?>
+                            ?>
                                 <p class="status2">Батлаагүй</p>
-                                <?php
+                            <?php
 
-                            }
-                            ;
+                            };
                             ?>
                         </td>
                         <td>
                             <?php if ($row['orderStatus'] == 1) {
-                                ?>
+                            ?>
                                 <p class="status">Баталсан </p>
-                                <?php
+                            <?php
                             } else {
-                                ?>
+                            ?>
                                 <p class="status2">Батлагдаагүй</p>
-                                <?php
+                            <?php
 
-                            }
-                            ;
+                            };
                             ?>
                         </td>
 
                         <td>
                             <button>
-                                <a onclick="return confirm ('Та захиалгыг устгахдаа итгэлтэй байна уу  ? ')"
-                                    href="userOrderDelete.php?id=<?php echo $row["order_id"]; ?>">Устгах</a> </button>
+                                <a onclick="return confirm ('Та захиалгыг устгахдаа итгэлтэй байна уу  ? ')" href="userOrderDelete.php?id=<?php echo $row["order_id"]; ?>">Устгах</a> </button>
                         </td>
                     </tr>
 
-                    <?php
+                <?php
                     $i++;
                 }
                 ?>
             </table>
 
-            <?php
+        <?php
         } else {
             echo "Батлагдсан захиалга байхгүй эсвлэл Төсөв батлагдсан төлөврүү шилжсэн байна";
         }
@@ -311,7 +313,7 @@ echo "Welcome user " . $userID;
             "SELECT order_id , orderDate  , item , problem , userID , dataStatusId ,orderStatus FROM workorder WHERE userID = '$userID' AND dataStatusId = 1  AND orderStatus=1 "
         );
         if (mysqli_num_rows($result) > 0) {
-            ?>
+        ?>
             <table border="1">
                 <tr>
                     <td>Захиалгын код</td>
@@ -326,7 +328,7 @@ echo "Welcome user " . $userID;
                 <?php
                 $i = 0;
                 while ($row = mysqli_fetch_array($result)) {
-                    ?>
+                ?>
                     <tr>
                         <td>
                             <?php echo $row["order_id"]; ?>
@@ -345,46 +347,43 @@ echo "Welcome user " . $userID;
                         </td>
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
-                                ?>
+                            ?>
                                 <p class="status">Баталсан </p>
-                                <?php
+                            <?php
                             } else {
-                                ?>
+                            ?>
                                 <p class="status2">Батлаагүй</p>
-                                <?php
+                            <?php
 
-                            }
-                            ;
+                            };
                             ?>
                         </td>
                         <td>
                             <?php if ($row['orderStatus'] == 1) {
-                                ?>
+                            ?>
                                 <p class="status">Баталсан </p>
-                                <?php
+                            <?php
                             } else {
-                                ?>
+                            ?>
                                 <p class="status2">Батлаагүй</p>
-                                <?php
+                            <?php
 
-                            }
-                            ;
+                            };
                             ?>
                         </td>
                         <td>
                             <button>
-                                <a onclick="return confirm ('Та захиалгыг устгахдаа итгэлтэй байна уу  ? ')"
-                                    href="userOrderDelete.php?id=<?php echo $row["order_id"]; ?>">Устгах</a> </button>
+                                <a onclick="return confirm ('Та захиалгыг устгахдаа итгэлтэй байна уу  ? ')" href="userOrderDelete.php?id=<?php echo $row["order_id"]; ?>">Устгах</a> </button>
                         </td>
                     </tr>
 
-                    <?php
+                <?php
                     $i++;
                 }
                 ?>
             </table>
 
-            <?php
+        <?php
         } else {
             echo "Өгөгдөл байхгүй";
         }
