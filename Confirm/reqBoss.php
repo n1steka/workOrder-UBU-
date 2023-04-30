@@ -48,6 +48,7 @@ $row = mysqli_fetch_array($result);
                                         ?>"><br>
             <label for="">Үнийн санал : </label><br>
             <input type="text" value="" placeholder="төгрөгөөр бичих" name="money"><br>
+
             <input type="submit" name="submit" value="Батлах">
 
             <input type="submit" name="cancel" value="Буцах">
@@ -98,20 +99,34 @@ if (isset($_POST['submit'])) {
 
     $extension  = array('jpeg', 'jpg', 'png');
 
+    if ($imageFileError  == 0) {
+        if ($imageSize < 50000) {
+?>
+            <script>
+                alert("Ажилттай илгээлээ");
+                window.open("http://localhost/order/admin-users.php", "_self");
+            </script>
+            <?php
 
-    if (in_array($file_extensions, $extension)) {
-        $upload_image = 'images/' . $imgFileName;
-        move_uploaded_file($imageFileTemp, $upload_image);
-        $sql = "UPDATE `workorder` SET `file` = '$upload_image'  , money_order = '$money'  WHERE `workorder`.`order_id` = '$id';";
-        $update = mysqli_query($conn, $sql);
+            if (in_array($file_extensions, $extension)) {
+                $upload_image = 'images/' . $imgFileName;
+                move_uploaded_file($imageFileTemp, $upload_image);
+                $sql = "UPDATE `workorder` SET `file` = '$upload_image'  , money_order = '$money'  WHERE `workorder`.`order_id` = '$id';";
+                $update = mysqli_query($conn, $sql);
 
-        if ($update) {
-            echo "success";
+                if ($update) {
+                    echo "success";
+                } else {
+                    echo "errr";
+                }
+            }
         } else {
-            echo "errr";
+            ?>
+            <script>
+                alert("Зурагний нягтаршил өндөр байна");
+            </script>
+    <?php
         }
-    } else {
-        echo  "zuragnii hemjee ih bna ";
     }
 }
 
@@ -125,8 +140,10 @@ if (isset($_POST['submit'])) {
 
 
 
+
+
 if (isset($_POST['cancel'])) {
-?>
+    ?>
     <script>
         window.open("http://localhost/order/admin-users.php", "_self");
     </script>
