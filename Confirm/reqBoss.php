@@ -3,7 +3,6 @@ include("../service/dbConnect.php");
 $id = $_GET['id'];
 $result = mysqli_query($conn, "SELECT * FROM workorder WHERE order_id = '$id'");
 $row = mysqli_fetch_array($result);
-
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +17,7 @@ $row = mysqli_fetch_array($result);
 
 <body>
 
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         <div class="container">
             <label for="">Захиалгын дугаар : </label> <br>
             <input type="text" value="<?php echo $id ?>"> <br>
@@ -29,22 +28,28 @@ $row = mysqli_fetch_array($result);
             <label for="">Эд хөрөнгө</label><br>
             <input type="text" value="<?php echo $row['item'] ?>"><br>
             <label for="">Асуудал</label><br>
+            <label for="">Зураг оруулах </label><br>
+            <input type="file" name="fileToUpload" id="fileToUpload" style="margin-bottom: 30px;"><br>
+
+
+
             <textarea name="" id="" cols="30" rows="10"><?php echo $row['problem'] ?></textarea><br>
             <label for="">Алба тэнхим</label><br>
             <input type="text" value="<?php
-            $usID = $row['userID'];
-            $sql = "SELECT *  FROM users  WHERE user_id = '$usID'";
-            $data = mysqli_query($conn, $sql);
+                                        $usID = $row['userID'];
+                                        $sql = "SELECT *  FROM users  WHERE user_id = '$usID'";
+                                        $data = mysqli_query($conn, $sql);
 
-            if (mysqli_num_rows($data) > 0) {
-                $rows = mysqli_fetch_assoc($data);
-                echo $rows['username'];
-            }
+                                        if (mysqli_num_rows($data) > 0) {
+                                            $rows = mysqli_fetch_assoc($data);
+                                            echo $rows['username'];
+                                        }
 
-            ?>"><br>
+                                        ?>"><br>
             <label for="">Үнийн санал : </label><br>
             <input type="text" value="" placeholder="төгрөгөөр бичих" name="money"><br>
             <input type="submit" name="submit" value="Батлах">
+
             <input type="submit" name="cancel" value="Буцах">
         </div>
     </form>
@@ -54,27 +59,78 @@ $row = mysqli_fetch_array($result);
 
 </html>
 
+
+
+
+
+
+
 <?php
+
+
 if (isset($_POST['submit'])) {
     $money = $_POST['money'];
-    $update = mysqli_query($conn, "UPDATE `workorder` SET `money_order` = '$money' WHERE `workorder`.`order_id` = $id;");
-    if ($update) {
-        ?>
-        <script>
-            alert('Үнийн саналыг амжилтай илгээлээ');
-            window.open("http://localhost/order/admin-users.php", "_self");
-        </script>
-        <?php
+    $image = $_FILES['fileToUpload'];
+    echo $money;
+    print_r($image);
+    echo "<br>";
+    $imgFileName = $image['name'];
+    echo "<br>";
+    print_r($imgFileName);
+    echo "<br>";
+    $imageFileError  = $image['error'];
+    echo "<br>";
+    print_r($imageFileError);
+    $imageSize = $image['size'];
+    echo "<br>";
+    print_r($imageSize);
+    echo "<br>";
+    $imageFileTemp = $image['tmp_name'];
+    print_r($imageFileTemp);
+
+    $fileName_separate = explode('.', $imgFileName);
+    print_r($fileName_separate);
+    echo "<br>";
+
+    $file_extensions = strtolower(end($fileName_separate));
+
+    print_r($file_extensions);
+
+    $extension  = array('jpeg', 'jpg', 'png');
+
+
+    if (in_array($file_extensions, $extension)) {
+        $upload_image = 'images/' . $imgFileName;
+        move_uploaded_file($imageFileTemp, $upload_image);
+        $sql = "UPDATE `workorder` SET `file` = '$upload_image'  , money_order = '$money'  WHERE `workorder`.`order_id` = '$id';";
+        $update = mysqli_query($conn, $sql);
+
+        if ($update) {
+            echo "success";
+        } else {
+            echo "errr";
+        }
+    } else {
+        echo  "zuragnii hemjee ih bna ";
     }
 }
-?>
-<?php
+
+
+
+
+
+
+
+
+
+
+
 if (isset($_POST['cancel'])) {
-    ?>
+?>
     <script>
         window.open("http://localhost/order/admin-users.php", "_self");
     </script>
-    <?php
+<?php
 }
 ?>
 
