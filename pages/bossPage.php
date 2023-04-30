@@ -82,6 +82,7 @@ $userID = $_SESSION['boss_id'];
         <button class="tablinks" onclick="openCity(event, 'Paris')">Төсөв батласан</button>
         <button class="tablinks" onclick="openCity(event, 'Tokyo')">Дууссан ажилууд </button>
         <button class="tablinks" onclick="openCity(event, 'return')">Төсөв батлахаас татгалзсан </button>
+      
         <button><a href="../service/logout.php">Гарах</a></button>
     </div>
 
@@ -147,14 +148,17 @@ $userID = $_SESSION['boss_id'];
                             };
                             ?>
                         </td>
+                        
                         <td>
                             <button>
-                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')" href="../service/uproveBudget.php?id=<?php echo $row["order_id"]; ?>">Батлах</a>
+                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')"
+                                 href="../service/uproveBudget.php?id=<?php echo $row["order_id"]; ?>">Батлах</a>
                             </button>
                         </td>
                         <td>
                             <button>
-                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')" href="../return/returnOrder.php?id=<?php echo $row["order_id"]; ?>">Цуцлах</a>
+                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')"
+                                 href="../return/returnOrder.php?id=<?php echo $row["order_id"]; ?>">Цуцлах</a>
                             </button>
                         </td>
                     </tr>
