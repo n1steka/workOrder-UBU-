@@ -45,7 +45,6 @@ include("./service/dbConnect.php");
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
-
                         <li class="nav-item">
                             <a href="admin-movie.php" class="nav-link">
                                 <i class="nav-icon fas fa-video"></i>
@@ -99,14 +98,11 @@ include("./service/dbConnect.php");
             </div>
             <!-- /.sidebar -->
         </aside>
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="donwload">
-
             </div>
-
 
             <section class="content-header">
                 <div class="container-fluid">

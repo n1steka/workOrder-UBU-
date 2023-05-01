@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (empty($_SESSION['boss_id'])) {
-?>
+    ?>
     <script>
         window.open("http://localhost/order/pages/userLogin.php", "_self");
     </script>
-<?php
+    <?php
 }
 
 include("../service/dbConnect.php");
@@ -13,6 +13,7 @@ $userID = $_SESSION['boss_id'];
 ?>
 
 <!DOCTYPE html>
+<title>Санхүүгийн алба</title>
 <html>
 
 <head>
@@ -82,7 +83,7 @@ $userID = $_SESSION['boss_id'];
         <button class="tablinks" onclick="openCity(event, 'Paris')">Төсөв батласан</button>
         <button class="tablinks" onclick="openCity(event, 'Tokyo')">Дууссан ажилууд </button>
         <button class="tablinks" onclick="openCity(event, 'return')">Төсөв батлахаас татгалзсан </button>
-      
+
         <button><a href="../service/logout.php">Гарах</a></button>
     </div>
 
@@ -91,10 +92,10 @@ $userID = $_SESSION['boss_id'];
         <?php
         $result = mysqli_query(
             $conn,
-            "SELECT * FROM workorder WHERE  money_order >=0 AND orderStatus IS NULL "
+            "SELECT * FROM workorder WHERE  money_order >=0 AND orderStatus IS NULL"
         );
         if (mysqli_num_rows($result) > 0) {
-        ?>
+            ?>
             <table border="1">
                 <tr>
                     <td>Захиалгын код</td>
@@ -112,7 +113,7 @@ $userID = $_SESSION['boss_id'];
                 <?php
                 $i = 0;
                 while ($row = mysqli_fetch_array($result)) {
-                ?>
+                    ?>
                     <tr>
                         <td>
                             <?php echo $row["order_id"]; ?>
@@ -137,39 +138,39 @@ $userID = $_SESSION['boss_id'];
                         </td>
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
-                            ?>
+                                ?>
                                 <p class="status">Баталсан </p>
-                            <?php
+                                <?php
                             } else {
-                            ?>
+                                ?>
                                 <p class="status2">Батлаагүй</p>
-                            <?php
+                                <?php
 
-                            };
+                            }
+                            ;
                             ?>
                         </td>
-                        
+
                         <td>
                             <button>
                                 <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')"
-                                 href="../service/uproveBudget.php?id=<?php echo $row["order_id"]; ?>">Батлах</a>
+                                    href="../service/uproveBudget.php?id=<?php echo $row["order_id"]; ?>">Батлах</a>
                             </button>
                         </td>
                         <td>
                             <button>
-                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')"
-                                 href="../return/returnOrder.php?id=<?php echo $row["order_id"]; ?>">Цуцлах</a>
+                                <a href="../return/returnOrder.php?id=<?php echo $row["order_id"]; ?>">Дэлгэрэнгүй</a>
                             </button>
                         </td>
                     </tr>
 
-                <?php
+                    <?php
                     $i++;
                 }
                 ?>
             </table>
 
-        <?php
+            <?php
         } else {
             echo "Өгөгдөл байхгүй";
         }
@@ -182,10 +183,10 @@ $userID = $_SESSION['boss_id'];
         <?php
         $result = mysqli_query(
             $conn,
-            "SELECT * FROM workorder WHERE  dataStatusId = 1 AND money_order >=0 AND orderStatus = 1  "
+            "SELECT * FROM workorder WHERE    money_order >=0 AND orderStatus = 1  "
         );
         if (mysqli_num_rows($result) > 0) {
-        ?>
+            ?>
             <table border="1">
                 <tr>
                     <td>Захиалгын код</td>
@@ -202,7 +203,7 @@ $userID = $_SESSION['boss_id'];
                 <?php
                 $i = 0;
                 while ($row = mysqli_fetch_array($result)) {
-                ?>
+                    ?>
                     <tr>
                         <td>
                             <?php echo $row["order_id"]; ?>
@@ -227,28 +228,29 @@ $userID = $_SESSION['boss_id'];
                         </td>
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
-                            ?>
+                                ?>
                                 <p class="status">Баталсан </p>
-                            <?php
+                                <?php
                             } else {
-                            ?>
+                                ?>
                                 <p class="status2">Батлаагүй</p>
-                            <?php
+                                <?php
 
-                            };
+                            }
+                            ;
                             ?>
                         </td>
 
 
                     </tr>
 
-                <?php
+                    <?php
                     $i++;
                 }
                 ?>
             </table>
 
-        <?php
+            <?php
         } else {
             echo "Өгөгдөл байхгүй";
         }
@@ -264,7 +266,7 @@ $userID = $_SESSION['boss_id'];
             "SELECT * FROM workorder WHERE checkStatus = 2 AND money_order IS NOT NULL"
         );
         if (mysqli_num_rows($result) > 0) {
-        ?>
+            ?>
             <table border="1">
                 <tr>
                     <td>Захиалгын код</td>
@@ -281,14 +283,14 @@ $userID = $_SESSION['boss_id'];
                 <?php
                 $i = 0;
                 while ($row = mysqli_fetch_array($result)) {
-                ?>
+                    ?>
                     <tr>
                         <td>
                             <?php echo $row["order_id"]; ?>
                         </td>
                         <td>
                             <?php
-                            $useride =  $row["userID"];
+                            $useride = $row["userID"];
                             $qry = mysqli_query($conn, "SELECT * FROM users WHERE  user_id = '$useride'");
                             $rws = mysqli_fetch_array($qry);
                             echo $rws['username']; ?>
@@ -310,24 +312,25 @@ $userID = $_SESSION['boss_id'];
                         </td>
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
-                            ?>
+                                ?>
                                 <p class="status">Баталсан </p>
-                            <?php
+                                <?php
                             } else {
-                            ?>
+                                ?>
                                 <p class="status2">Батлаагүй</p>
-                            <?php
+                                <?php
 
-                            };
+                            }
+                            ;
                             ?>
                         </td>
 
                         <td>
                             <?php
                             if ($row['checkStatus'] == 2) {
-                            ?>
+                                ?>
                                 <p style="color:green">Дууссан</p>
-                            <?php
+                                <?php
                             }
                             ?>
                         </td>
@@ -335,13 +338,13 @@ $userID = $_SESSION['boss_id'];
 
                     </tr>
 
-                <?php
+                    <?php
                     $i++;
                 }
                 ?>
             </table>
 
-        <?php
+            <?php
         } else {
             echo "Өгөгдөл байхгүй";
         }
@@ -357,7 +360,7 @@ $userID = $_SESSION['boss_id'];
             "SELECT * FROM workorder WHERE orderStatus= 2 AND money_order IS NOT NULL"
         );
         if (mysqli_num_rows($result) > 0) {
-        ?>
+            ?>
             <table border="1">
                 <tr>
                     <td>Захиалгын код</td>
@@ -374,14 +377,14 @@ $userID = $_SESSION['boss_id'];
                 <?php
                 $i = 0;
                 while ($row = mysqli_fetch_array($result)) {
-                ?>
+                    ?>
                     <tr>
                         <td>
                             <?php echo $row["order_id"]; ?>
                         </td>
                         <td>
                             <?php
-                            $useride =  $row["userID"];
+                            $useride = $row["userID"];
                             $qry = mysqli_query($conn, "SELECT * FROM users WHERE  user_id = '$useride'");
                             $rws = mysqli_fetch_array($qry);
                             echo $rws['username']; ?>
@@ -403,15 +406,16 @@ $userID = $_SESSION['boss_id'];
                         </td>
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
-                            ?>
+                                ?>
                                 <p class="status">Баталсан </p>
-                            <?php
+                                <?php
                             } else {
-                            ?>
+                                ?>
                                 <p class="status2">Батлаагүй</p>
-                            <?php
+                                <?php
 
-                            };
+                            }
+                            ;
                             ?>
                         </td>
 
@@ -419,9 +423,9 @@ $userID = $_SESSION['boss_id'];
                         <td>
                             <?php
                             if ($row['orderStatus'] == 2) {
-                            ?>
+                                ?>
                                 <p style="color:red">Татгалзсан</p>
-                            <?php
+                                <?php
                             }
                             ?>
                         </td>
@@ -431,13 +435,13 @@ $userID = $_SESSION['boss_id'];
 
                     </tr>
 
-                <?php
+                    <?php
                     $i++;
                 }
                 ?>
             </table>
 
-        <?php
+            <?php
         } else {
             echo "Өгөгдөл байхгүй";
         }

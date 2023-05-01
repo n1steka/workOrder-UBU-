@@ -13,6 +13,7 @@ echo "Welcome user " . $userID;
 ?>
 <!DOCTYPE html>
 <html lang="en">
+    <title>Хэрэглэгч</title>
 
 <head>
     <meta charset="UTF-8">
