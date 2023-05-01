@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 30, 2023 at 05:58 AM
+-- Host: 127.0.0.1
+-- Generation Time: Apr 30, 2023 at 10:35 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -87,6 +87,25 @@ INSERT INTO `employee` (`employee_id`, `username`, `lastname`, `phone`, `email`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `files`
+--
+
+CREATE TABLE `files` (
+  `id` int(11) NOT NULL,
+  `file` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `files`
+--
+
+INSERT INTO `files` (`id`, `file`) VALUES
+(1, 'IMG-644e99a1dfe272.91523297.jpg'),
+(2, 'IMG-644e9a15c65601.43055470.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -124,6 +143,7 @@ CREATE TABLE `workorder` (
   `userID` char(8) NOT NULL,
   `dataStatusId` int(1) DEFAULT NULL,
   `money_order` int(11) DEFAULT NULL,
+  `file` text DEFAULT NULL,
   `orderStatus` int(1) DEFAULT NULL,
   `employee_id` char(10) DEFAULT NULL,
   `checkStatus` int(1) DEFAULT NULL
@@ -133,10 +153,13 @@ CREATE TABLE `workorder` (
 -- Dumping data for table `workorder`
 --
 
-INSERT INTO `workorder` (`order_id`, `orderDate`, `doneDate`, `item`, `roomNumber`, `problem`, `userID`, `dataStatusId`, `money_order`, `orderStatus`, `employee_id`, `checkStatus`) VALUES
-(85, '2023-04-27 17:03:55', '04/27/2023 04:51:50', 'ййбыбйы', 'adsasdads', 'adsdasasd', 'pc20d038', 1, 125500, 1, 'pc20d038', 2),
-(86, '2023-04-27 17:04:01', 'asd', 'asd', 'asd', 'dsa', 'ba20d038', 1, NULL, NULL, 'pc20d038', 2),
-(92, '2023-04-27 16:54:10', NULL, 'asd', 'xD308', 'asdxD', 'pc20d038', 1, NULL, NULL, 'pc20d038', 0);
+INSERT INTO `workorder` (`order_id`, `orderDate`, `doneDate`, `item`, `roomNumber`, `problem`, `userID`, `dataStatusId`, `money_order`, `file`, `orderStatus`, `employee_id`, `checkStatus`) VALUES
+(85, '2023-04-27 17:03:55', '04/27/2023 04:51:50', 'ййбыбйы', 'adsasdads', 'adsdasasd', 'pc20d038', 1, 125500, NULL, 1, 'pc20d038', 2),
+(86, '2023-04-27 17:04:01', 'asd', 'asd', 'asd', 'dsa', 'ba20d038', 1, NULL, NULL, NULL, 'pc20d038', 2),
+(92, '2023-04-30 17:27:36', NULL, 'asd', 'xD308', 'asdxD', 'pc20d038', 0, NULL, NULL, NULL, 'pc20d038', 0),
+(93, '2023-04-30 20:11:03', '', 'xD', 'xD309', 'sda', 'ba20d038', NULL, 2222222, 'images/nature-3082832__340.jpg', NULL, 'pc20d038', NULL),
+(95, '2023-04-30 17:30:03', NULL, 'asd', 'asdasd123123', 'asdasdas', 'pc20d038', 1, NULL, NULL, NULL, '', 0),
+(96, '2023-04-30 19:10:27', '', 'ddas', 'dsa', 'ads', 'ba20d038', NULL, 2222, 'images/nature-3082832__340.jpg', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -153,6 +176,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `boss`
   ADD PRIMARY KEY (`boss_id`);
+
+--
+-- Indexes for table `files`
+--
+ALTER TABLE `files`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -186,10 +215,16 @@ ALTER TABLE `boss`
   MODIFY `boss_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `files`
+--
+ALTER TABLE `files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `workorder`
 --
 ALTER TABLE `workorder`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- Constraints for dumped tables
