@@ -106,7 +106,6 @@ $userID = $_SESSION['boss_id'];
                     <td>Асуудал </td>
                     <td>Үнийн санал </td>
                     <td>Аж ахуй</td>
-                    <td>Төсөв батлах</td>
                     <td>Цуцлах</td>
                 </tr>
 
@@ -139,7 +138,7 @@ $userID = $_SESSION['boss_id'];
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
                                 ?>
-                                <p class="status">Баталсан </p>
+                                <p   >Баталсан </p>
                                 <?php
                             } else {
                                 ?>
@@ -151,12 +150,6 @@ $userID = $_SESSION['boss_id'];
                             ?>
                         </td>
 
-                        <td>
-                            <button>
-                                <a onclick="return confirm ('Та төсөв батлахдаа итгэлтэй байна уу  ? ')"
-                                    href="../service/uproveBudget.php?id=<?php echo $row["order_id"]; ?>">Батлах</a>
-                            </button>
-                        </td>
                         <td>
                             <button>
                                 <a href="../return/returnOrder.php?id=<?php echo $row["order_id"]; ?>">Дэлгэрэнгүй</a>
@@ -229,11 +222,11 @@ $userID = $_SESSION['boss_id'];
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
                                 ?>
-                                <p class="status">Баталсан </p>
+                                <p   style="color:green" >Баталсан </p>
                                 <?php
                             } else {
                                 ?>
-                                <p class="status2">Батлаагүй</p>
+                                <p style="color:red">Батлаагүй</p>
                                 <?php
 
                             }

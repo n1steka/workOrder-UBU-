@@ -37,6 +37,7 @@ echo "Welcome user " . $userID;
             <button class="tablinks" onclick="openCity(event, 'Paris')">Захиалга үүсгэх</button>
             <button class="tablinks" onclick="openCity(event, 'Tokyo')">Аж ахуй баталсан захиалга</button>
             <button class="tablinks" onclick="openCity(event, 'Sanhuu')">Төсөв баталсан захиалга</button>
+            <button class="tablinks" onclick="openCity(event, 'done')">Ажил хийгдэж дууссан</button>
             <button><a href="logout.php">Гарах</a></button>
 
         </div>
@@ -376,6 +377,102 @@ echo "Welcome user " . $userID;
                             <button>
                                 <a onclick="return confirm ('Та захиалгыг устгахдаа итгэлтэй байна уу  ? ')" href="userOrderDelete.php?id=<?php echo $row["order_id"]; ?>">Устгах</a> </button>
                         </td>
+                    </tr>
+
+                <?php
+                    $i++;
+                }
+                ?>
+            </table>
+
+        <?php
+        } else {
+            echo "Өгөгдөл байхгүй";
+        }
+
+
+        ?>
+    </div>
+
+    <div id="done" class="tabcontent">
+        <h3>Төсөв батлагдсан захиалга</h3>
+        <?php
+        $result = mysqli_query(
+            $conn,
+            "SELECT * FROM workorder WHERE userID = '$userID' AND dataStatusId = 1  AND orderStatus=1 AND checkStatus = 2 "
+        );
+        if (mysqli_num_rows($result) > 0) {
+        ?>
+            <table border="1">
+                <tr>
+                    <td>Захиалгын код</td>
+                    <td>Ажилтны код</td>
+                    <td>Захиалга өгсөн өдөр</td>
+                    <td>Эд хөрөнгийн нэр </td>
+                    <td>Асуудал </td>
+                    <td>Аж ахуй баталсан</td>
+                    <td>Төсөв баталсан</td>
+                    <td>Дууссан эсэх</td>
+                </tr>
+
+                <?php
+                $i = 0;
+                while ($row = mysqli_fetch_array($result)) {
+                ?>
+                    <tr>
+                        <td>
+                            <?php echo $row["order_id"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["userID"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["orderDate"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["item"]; ?>
+                        </td>
+                        <td>
+                            <?php echo $row["problem"]; ?>
+                        </td>
+                        <td>
+                            <?php if ($row['dataStatusId'] == 1) {
+                            ?>
+                                <p class="status">Баталсан </p>
+                            <?php
+                            } else {
+                            ?>
+                                <p class="status2">Батлаагүй</p>
+                            <?php
+
+                            };
+                            ?>
+                        </td>
+                        <td>
+                            <?php if ($row['orderStatus'] == 1) {
+                            ?>
+                                <p class="status">Баталсан </p>
+                            <?php
+                            } else {
+                            ?>
+                                <p class="status2">Батлаагүй</p>
+                            <?php
+
+                            };
+                            ?>
+                        </td>
+                       
+                        <td>
+                            <?php 
+                                 if($row['checkStatus'] ==2 ) { 
+                                    ?>
+                                            <p style="color:#04AA6D" >Дууссан</p>                                    
+                                    <?php 
+                                 }    
+                            ?>
+                        </td>
+
+
                     </tr>
 
                 <?php
