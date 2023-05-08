@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
         <select name="formal" onchange="javascript:handleSelect(this)">
             <option value="contact">Сонгох</option>
             <option value="LoginPage">Admin</option>
-            <option value="bossLogin">Ан жүмбүг</option>
+            <option value="bossLogin">Санхүүгийн алдба</option>
             <option value="employeeLogin">Аж ахуйн ажилчин</option>
 
         </select>

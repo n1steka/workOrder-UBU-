@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
 			<option value="userLogin">Сонгох</option>
 			<option value="userLogin">Хэрэглэгч</option>
 			<option value="LoginPage">Админ</option>
-			<option value="bossLogin">Ан жүмбүг</option>
+			<option value="bossLogin">Санхүүгийн алдба</option>
 			<option value="employeeLogin">Аж ахуйн ажилчин</option>
 
 		</select>

@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
 
 <body>
 	<form method="post">
-		<h2>Ан жүмбүг нэвтрэх</h2>
+		<h2>Санхүүгийн алдба</h2>
 		<div class="form-group">
 			<label for="username">Нэвтрэх нэр:</label>
 			<input type="text" id="username" name="code" required>
@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
 			<option value="userLogin">Сонгох</option>
 			<option value="userLogin">Хэрэглэгч</option>
 			<option value="LoginPage">Админ</option>
-			<option value="bossLogin">Ан жүмбүг</option>
+			<option value="bossLogin">Санхүүгийн алдба</option>
             <option value="employeeLogin">Аж ахуйн ажилчин</option>
 		</select>
 
