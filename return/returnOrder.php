@@ -50,7 +50,7 @@ $image = $row['file'];
             </button>
 
             <a href="">
-                <button class="button button4">
+                <button class="button button4" type="cancel" value="cancel" name="cancel">
                     Цуцлах
                 </button>
             </a>
@@ -66,10 +66,36 @@ if (isset($_POST['submit'])) {
         ?>
         <script>
             alert("done");
-                window.open("http://localhost/order/pages/bossPage.php" , "_self");
+            window.open("http://localhost/order/pages/bossPage.php", "_self");
         </script>
         <?php
     }
 
+} elseif (isset($_POST['cancel'])) {
+    $sql = mysqli_query($conn, "UPDATE `workorder` SET `money_order` = '1' WHERE `workorder`.`order_id` = '$id'");
+
+    if ($sql) {
+        ?>
+        <script>
+            alert("done");
+            window.open("http://localhost/order/pages/bossPage.php", "_self");
+        </script>
+        <?php
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>

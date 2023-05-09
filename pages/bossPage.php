@@ -92,7 +92,7 @@ $userID = $_SESSION['boss_id'];
         <?php
         $result = mysqli_query(
             $conn,
-            "SELECT * FROM workorder WHERE  money_order >=0 AND orderStatus IS NULL"
+            "SELECT * FROM workorder WHERE  money_order >=2 AND orderStatus IS NULL"
         );
         if (mysqli_num_rows($result) > 0) {
             ?>
@@ -138,7 +138,7 @@ $userID = $_SESSION['boss_id'];
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
                                 ?>
-                                <p   >Баталсан </p>
+                                <p>Баталсан </p>
                                 <?php
                             } else {
                                 ?>
@@ -222,7 +222,7 @@ $userID = $_SESSION['boss_id'];
                         <td>
                             <?php if ($row['dataStatusId'] == 1) {
                                 ?>
-                                <p   style="color:green" >Баталсан </p>
+                                <p style="color:green">Баталсан </p>
                                 <?php
                             } else {
                                 ?>

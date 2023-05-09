@@ -100,7 +100,7 @@ if (isset($_POST['submit'])) {
     $extension  = array('jpeg', 'jpg', 'png');
 
     if ($imageFileError  == 0) {
-        if ($imageSize < 50000) {
+        if ($imageSize < 250000) {
 ?>
             <script>
                 alert("Ажилттай илгээлээ");
