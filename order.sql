@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2023 at 10:35 PM
+-- Generation Time: May 09, 2023 at 05:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -67,7 +67,7 @@ INSERT INTO `boss` (`boss_id`, `username`, `password`) VALUES
 
 CREATE TABLE `employee` (
   `employee_id` char(8) NOT NULL,
-  `username` varchar(50) NOT NULL,
+  `username` varchar(150) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -80,28 +80,9 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`employee_id`, `username`, `lastname`, `phone`, `email`, `password`, `gender`) VALUES
-('pc20d038', 'bataa', 'asd', '99048576', 'mongolzkarigun@gmail.com', 'asd', 'Эрэгтэй'),
-('aj20d038', 'Usukhjargal', 'gantur', '+1 (847) 992-3243', 'vefyburino@mailinator.com', 'asd', 'Эрэгтэй'),
-('aj23d033', 'lyleruni', 'ganaa', '+1 (945) 325-9945', 'narez@mailinator.com', 'Pa$$w0rd!', 'Эрэгтэй');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `files`
---
-
-CREATE TABLE `files` (
-  `id` int(11) NOT NULL,
-  `file` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `files`
---
-
-INSERT INTO `files` (`id`, `file`) VALUES
-(1, 'IMG-644e99a1dfe272.91523297.jpg'),
-(2, 'IMG-644e9a15c65601.43055470.jpg');
+('aj20d033', 'Бат', 'Батболд', '99553366', 'betome1@gmail.com', 'asd', 'Эрэгтэй'),
+('aj20d022', 'Данзан', 'Болд', '99885522', 'Bold@gmail.com', 'asd', 'Эрэгтэй'),
+('aj20d32', 'Дулам', 'Дэлгэр', '+1 (295) 696-3339', 'beca@mailinator.com', 'asd', 'Эрэгтэй');
 
 -- --------------------------------------------------------
 
@@ -124,8 +105,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `lastname`, `phone`, `email`, `password`, `gender`) VALUES
-('ba20d038', 'бизнес удирдлага', 'Norman', 1, 'fotutobut@mailinator.com', 'asd', 'Эрэгтэй'),
-('pc20d038', 'Компьютер мэдээлэл технологи', 'munkherdene', 95598999, 'munkherdene.ts@ulaanbaatar.edu.mn', 'asd', 'male');
+('ba20d038', 'бизнес удирдлага', 'Батбаатар', 1, 'fotutobut@mailinator.com', 'asd', 'Эрэгтэй'),
+('pc20d038', 'Компьютер мэдээлэл технологи', 'Мөнх-Эрдэнэ', 95598999, 'munkherdene.ts@ulaanbaatar.edu.mn', 'asd', 'male');
 
 -- --------------------------------------------------------
 
@@ -154,12 +135,8 @@ CREATE TABLE `workorder` (
 --
 
 INSERT INTO `workorder` (`order_id`, `orderDate`, `doneDate`, `item`, `roomNumber`, `problem`, `userID`, `dataStatusId`, `money_order`, `file`, `orderStatus`, `employee_id`, `checkStatus`) VALUES
-(85, '2023-04-27 17:03:55', '04/27/2023 04:51:50', 'ййбыбйы', 'adsasdads', 'adsdasasd', 'pc20d038', 1, 125500, NULL, 1, 'pc20d038', 2),
-(86, '2023-04-27 17:04:01', 'asd', 'asd', 'asd', 'dsa', 'ba20d038', 1, NULL, NULL, NULL, 'pc20d038', 2),
-(92, '2023-04-30 17:27:36', NULL, 'asd', 'xD308', 'asdxD', 'pc20d038', 0, NULL, NULL, NULL, 'pc20d038', 0),
-(93, '2023-04-30 20:11:03', '', 'xD', 'xD309', 'sda', 'ba20d038', NULL, 2222222, 'images/nature-3082832__340.jpg', NULL, 'pc20d038', NULL),
-(95, '2023-04-30 17:30:03', NULL, 'asd', 'asdasd123123', 'asdasdas', 'pc20d038', 1, NULL, NULL, NULL, '', 0),
-(96, '2023-04-30 19:10:27', '', 'ddas', 'dsa', 'ads', 'ba20d038', NULL, 2222, 'images/nature-3082832__340.jpg', NULL, NULL, NULL);
+(97, '2023-05-09 15:12:47', '05/09/2023 05:12:47', 'Хаалганы бариул ', 'A306', ' Хаалганы бариул нь түгжигдэхгүй гацаж байгаа тул яаралтай сольж өгнө үү.', 'pc20d038', 1, 16000, 'images/bariul.jpg', NULL, 'aj20d32', 2),
+(98, '2023-05-09 15:04:44', NULL, '', 'A308', ' А 308 компьютерын лаборатори ангийн. Цахилгааны тогны асуудлууд болон кабелийг цэгцэлж өгнө үү.', 'pc20d038', 1, NULL, NULL, NULL, 'aj20d32', 0);
 
 --
 -- Indexes for dumped tables
@@ -176,12 +153,6 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `boss`
   ADD PRIMARY KEY (`boss_id`);
-
---
--- Indexes for table `files`
---
-ALTER TABLE `files`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -215,16 +186,10 @@ ALTER TABLE `boss`
   MODIFY `boss_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `files`
---
-ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `workorder`
 --
 ALTER TABLE `workorder`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- Constraints for dumped tables

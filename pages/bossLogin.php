@@ -10,6 +10,7 @@ if (isset($_POST['submit'])) {
 	$sql = mysqli_query($conn, "SELECT * FROM boss WHERE username='$code' && password = '$password' ");
 	$num =  mysqli_num_rows($sql);
 
+	
 	if ($num > 0) {
 		$row = mysqli_fetch_assoc($sql);
 		$_SESSION['boss_id'] = $row['boss_id'];
