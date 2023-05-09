@@ -74,6 +74,8 @@ if (isset($_POST['submit'])) {
 } elseif (isset($_POST['cancel'])) {
     $sql = mysqli_query($conn, "UPDATE `workorder` SET `money_order` = '1' WHERE `workorder`.`order_id` = '$id'");
 
+
+
     if ($sql) {
         ?>
         <script>
